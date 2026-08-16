@@ -1,0 +1,661 @@
+/* ============================================================
+   COMMENTS PAGE
+   ============================================================ */
+
+   .comments-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+
+/* ============================================================
+   PAGE TITLE
+   ============================================================ */
+
+.comments-page h1 {
+    margin: 0 0 12px;
+
+    text-align: center;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   PAGE DESCRIPTION
+   ============================================================ */
+
+.comments-page .comments-description {
+    margin: 0 0 25px;
+
+    text-align: center;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    color: #666;
+}
+
+
+/* ============================================================
+   HORIZONTAL DIVIDERS
+   ============================================================ */
+
+.comments-page > hr {
+    margin: 25px 0;
+
+    border: none;
+    border-top: 1px solid #d9e1d9;
+}
+
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+
+.comments-page h2 {
+    margin: 0 0 18px;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+.comments-page h3 {
+    margin: 0 0 12px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
+
+.comments-page .comments-flash-messages {
+    margin-bottom: 20px;
+}
+
+
+.comments-page .comments-flash-message {
+    margin: 8px 0;
+    padding: 13px 16px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   FLASH SUCCESS
+   ============================================================ */
+
+.comments-page .comments-flash-success {
+    border-left: 5px solid #2e7d32;
+
+    background: #edf7ed;
+    color: #245c27;
+}
+
+
+/* ============================================================
+   FLASH ERROR
+   ============================================================ */
+
+.comments-page .comments-flash-error {
+    border-left: 5px solid #b3261e;
+
+    background: #fdecea;
+    color: #8a1c16;
+}
+
+
+/* ============================================================
+   FLASH WARNING
+   ============================================================ */
+
+.comments-page .comments-flash-warning {
+    border-left: 5px solid #b26a00;
+
+    background: #fff7e6;
+    color: #805000;
+}
+
+
+/* ============================================================
+   FLASH INFO
+   ============================================================ */
+
+.comments-page .comments-flash-info {
+    border-left: 5px solid #2767a3;
+
+    background: #edf5fc;
+    color: #24527d;
+}
+
+
+/* ============================================================
+   DATABASE ERROR
+   ============================================================ */
+
+.comments-page .comments-error {
+    margin-bottom: 25px;
+    padding: 14px 18px;
+
+    border-left: 5px solid #b3261e;
+    border-radius: 6px;
+
+    background: #fdecea;
+    color: #8a1c16;
+}
+
+
+.comments-page .comments-error p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   ADD COMMENT SECTION
+   ============================================================ */
+
+.comments-page .add-comment-section {
+    margin-top: 25px;
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   ADD COMMENT FORM
+   ============================================================ */
+
+.comments-page .add-comment-form {
+    width: 100%;
+}
+
+
+/* ============================================================
+   COMMENT FORM FIELD
+   ============================================================ */
+
+.comments-page .comment-form-field {
+    margin-bottom: 18px;
+}
+
+
+.comments-page .comment-form-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    color: #333;
+}
+
+
+/* ============================================================
+   TEXTAREAS
+   ============================================================ */
+
+.comments-page textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #bfc9bf;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #333;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    resize: vertical;
+}
+
+
+.comments-page textarea:focus {
+    outline: none;
+
+    border-color: #214523;
+
+    box-shadow: 0 0 0 2px rgba(33, 69, 35, 0.12);
+}
+
+
+.comments-page textarea::placeholder {
+    color: #999;
+}
+
+
+/* ============================================================
+   ADD COMMENT BUTTON
+   ============================================================ */
+
+.comments-page .add-comment-button {
+    padding: 11px 22px;
+
+    border: 1px solid #214523;
+    border-radius: 5px;
+
+    background: #214523;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.comments-page .add-comment-button:hover {
+    background: #2f6333;
+}
+
+
+.comments-page .add-comment-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   MY COMMENTS SECTION
+   ============================================================ */
+
+.comments-page .my-comments-section {
+    margin-top: 25px;
+}
+
+
+/* ============================================================
+   COMMENTS LIST
+   ============================================================ */
+
+.comments-page .comments-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+/* ============================================================
+   COMMENT CARD
+   ============================================================ */
+
+.comments-page .comment-card {
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   COMMENT INFORMATION
+   ============================================================ */
+
+.comments-page .comment-information {
+    margin-bottom: 22px;
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #e0e5e0;
+}
+
+
+.comments-page .comment-information p {
+    margin: 7px 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #444;
+}
+
+
+.comments-page .comment-information p strong {
+    color: #222;
+}
+
+
+/* ============================================================
+   EDIT COMMENT SECTION
+   ============================================================ */
+
+.comments-page .edit-comment-section {
+    margin-top: 20px;
+}
+
+
+.comments-page .edit-comment-section textarea {
+    margin-bottom: 12px;
+}
+
+
+/* ============================================================
+   SAVE COMMENT BUTTON
+   ============================================================ */
+
+.comments-page .save-comment-button {
+    padding: 10px 20px;
+
+    border: 1px solid #214523;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #214523;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.comments-page .save-comment-button:hover {
+    background: #214523;
+    color: #ffffff;
+}
+
+
+.comments-page .save-comment-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   DELETE COMMENT SECTION
+   ============================================================ */
+
+.comments-page .delete-comment-section {
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e0e5e0;
+}
+
+
+/* ============================================================
+   DELETE COMMENT BUTTON
+   ============================================================ */
+
+.comments-page .delete-comment-button {
+    padding: 10px 20px;
+
+    border: 1px solid #9d2b24;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #9d2b24;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.comments-page .delete-comment-button:hover {
+    background: #9d2b24;
+    color: #ffffff;
+}
+
+
+.comments-page .delete-comment-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   NO COMMENTS
+   ============================================================ */
+
+.comments-page .no-comments {
+    padding: 25px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    text-align: center;
+
+    color: #666;
+}
+
+
+.comments-page .no-comments p {
+    margin: 0;
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.comments-page .comments-navigation {
+    margin-top: 35px;
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   NAVIGATION DIVIDER
+   ============================================================ */
+
+.comments-page .comments-navigation hr {
+    margin: 0 0 25px;
+
+    border: none;
+    border-top: 1px solid #d9e1d9;
+}
+
+
+/* ============================================================
+   BACK TO DASHBOARD BUTTON
+   ============================================================ */
+
+.comments-page .dashboard-button {
+    display: inline-block;
+
+    padding: 11px 22px;
+
+    border: 1px solid #214523;
+    border-radius: 5px;
+
+    background: #214523;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.comments-page .dashboard-button:hover {
+    background: #2f6333;
+}
+
+
+.comments-page .dashboard-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .comments-page {
+        padding: 25px 15px 40px;
+    }
+
+
+    .comments-page .add-comment-section {
+        padding: 20px;
+    }
+
+
+    .comments-page .comment-card {
+        padding: 20px;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .comments-page {
+        padding: 22px 12px 35px;
+    }
+
+
+    .comments-page h1 {
+        font-size: 25px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .comments-page h2 {
+        font-size: 20px;
+    }
+
+
+    .comments-page h3 {
+        font-size: 17px;
+    }
+
+
+    .comments-page .comments-description {
+        font-size: 14px;
+    }
+
+
+    .comments-page .add-comment-section {
+        padding: 18px;
+    }
+
+
+    .comments-page .comment-card {
+        padding: 18px;
+    }
+
+
+    .comments-page .add-comment-button,
+    .comments-page .save-comment-button,
+    .comments-page .delete-comment-button {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    .comments-page .comments-navigation {
+        margin-top: 30px;
+    }
+
+
+    .comments-page .dashboard-button {
+        display: block;
+
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .comments-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    .comments-page .add-comment-section {
+        padding: 15px;
+    }
+
+
+    .comments-page .comment-card {
+        padding: 15px;
+    }
+
+}

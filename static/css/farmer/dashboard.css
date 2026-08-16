@@ -1,0 +1,239 @@
+/* ============================================================
+   FARMER DASHBOARD
+   ============================================================ */
+
+   .farmer-dashboard {
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 30px 20px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #333;
+
+}
+
+
+/* ============================================================
+   PAGE TITLE
+   ============================================================ */
+
+.farmer-dashboard h1 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 32px;
+
+    font-weight: 600;
+
+    color: #214523;
+
+}
+
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+
+.farmer-dashboard h3 {
+
+    margin-top: 25px;
+
+    margin-bottom: 12px;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    color: #214523;
+
+}
+
+
+/* ============================================================
+   PARAGRAPHS
+   ============================================================ */
+
+.farmer-dashboard p {
+
+    margin-top: 10px;
+
+    margin-bottom: 15px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ============================================================
+   USERNAME
+   ============================================================ */
+
+.farmer-dashboard strong {
+
+    color: #214523;
+
+}
+
+
+/* ============================================================
+   HORIZONTAL RULE
+   ============================================================ */
+
+.farmer-dashboard hr {
+
+    margin: 28px 0;
+
+    border: 0;
+
+    border-top: 1px solid #d6d6d6;
+
+}
+
+
+/* ============================================================
+   FARMER BUTTON
+   ============================================================ */
+
+.farmer-dashboard .farmer-button {
+
+    display: inline-block;
+
+    min-width: 190px;
+
+    padding: 11px 18px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #214523;
+
+    border-radius: 5px;
+
+    background-color: #214523;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
+
+}
+
+
+/* ============================================================
+   BUTTON HOVER
+   ============================================================ */
+
+.farmer-dashboard .farmer-button:hover {
+
+    background-color: #2f6333;
+
+    border-color: #2f6333;
+
+    text-decoration: none;
+
+}
+
+
+/* ============================================================
+   BUTTON ACTIVE
+   ============================================================ */
+
+.farmer-dashboard .farmer-button:active {
+
+    transform: translateY(1px);
+
+}
+
+
+/* ============================================================
+   BUTTON FOCUS
+   ============================================================ */
+
+.farmer-dashboard .farmer-button:focus {
+
+    outline: 2px solid #7aa87d;
+
+    outline-offset: 2px;
+
+}
+
+
+/* ============================================================
+   BUTTON SPACING
+   ============================================================ */
+
+.farmer-dashboard p:has(.farmer-button) {
+
+    margin-top: 12px;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .farmer-dashboard {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .farmer-dashboard h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .farmer-dashboard h3 {
+
+        font-size: 19px;
+
+    }
+
+
+    .farmer-dashboard p {
+
+        font-size: 15px;
+
+    }
+
+
+    .farmer-dashboard .farmer-button {
+
+        display: block;
+
+        width: 100%;
+
+        min-width: 0;
+
+        padding: 12px 15px;
+
+    }
+
+}

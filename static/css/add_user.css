@@ -1,0 +1,283 @@
+/* ============================================================
+   ADD USER / REGISTRATION PAGE
+   ============================================================ */
+
+   body {
+    margin: 0;
+    padding: 40px 20px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f2f5f3;
+    color: #222;
+}
+
+
+/* ============================================================
+   FORM CONTAINER
+   ============================================================ */
+
+body > h1,
+body > form,
+body > br,
+body > a {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+h1 {
+    max-width: 600px;
+
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    color: #214523;
+
+    font-size: 30px;
+}
+
+
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
+
+body > p {
+    max-width: 600px;
+
+    margin: 10px auto;
+
+    padding: 10px 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+form {
+    box-sizing: border-box;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================
+   LABELS
+   ============================================================ */
+
+form label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #333;
+}
+
+
+/* ============================================================
+   INPUTS AND SELECTS
+   ============================================================ */
+
+form input,
+form select {
+    box-sizing: border-box;
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 8px 10px;
+
+    font-size: 15px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #ffffff;
+
+    color: #222;
+
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+
+    outline: none;
+}
+
+
+/* ============================================================
+   INPUT FOCUS
+   ============================================================ */
+
+form input:focus,
+form select:focus {
+    border-color: #214523;
+
+    box-shadow: 0 0 0 2px rgba(33, 69, 35, 0.12);
+}
+
+
+/* ============================================================
+   PLACEHOLDER
+   ============================================================ */
+
+form input::placeholder {
+    color: #999;
+}
+
+
+/* ============================================================
+   ADDRESS SECTION
+   ============================================================ */
+
+form h3 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    padding-bottom: 8px;
+
+    font-size: 20px;
+
+    color: #214523;
+
+    border-bottom: 1px solid #dddddd;
+}
+
+
+/* ============================================================
+   REMOVE EXCESSIVE BR SPACING
+   ============================================================ */
+
+form br {
+    display: none;
+}
+
+
+/* ============================================================
+   FIELD SPACING
+   ============================================================ */
+
+form label + input,
+form label + select {
+    margin-bottom: 20px;
+}
+
+
+/* ============================================================
+   SAVE USER BUTTON
+   ============================================================ */
+
+form button {
+    width: 100%;
+
+    height: 44px;
+
+    margin-top: 10px;
+
+    padding: 10px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #ffffff;
+
+    background: #214523;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   BUTTON HOVER
+   ============================================================ */
+
+form button:hover {
+    background: #173719;
+}
+
+
+/* ============================================================
+   BUTTON ACTIVE
+   ============================================================ */
+
+form button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   BACK LINK
+   ============================================================ */
+
+body > a {
+    display: block;
+
+    width: fit-content;
+
+    margin-top: 20px;
+
+    color: #214523;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+body > a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 25px 15px;
+    }
+
+
+    h1 {
+        font-size: 25px;
+
+        margin-bottom: 20px;
+    }
+
+
+    form {
+        padding: 20px;
+    }
+
+
+    form input,
+    form select {
+        height: 44px;
+
+        font-size: 16px;
+    }
+
+}

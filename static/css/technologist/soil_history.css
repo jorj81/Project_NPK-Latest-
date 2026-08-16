@@ -1,0 +1,635 @@
+/* ============================================================
+   SOIL HISTORY PAGE
+   ============================================================ */
+
+   .soil-history {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+
+/* ============================================================
+   PAGE TITLE
+   ============================================================ */
+
+.soil-history h1 {
+    margin: 0 0 30px;
+
+    text-align: center;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   ERROR MESSAGE
+   ============================================================ */
+
+.soil-history .error-message {
+    margin: 0 0 25px;
+    padding: 14px 18px;
+
+    border-left: 5px solid #b3261e;
+    border-radius: 6px;
+
+    background: #fdecea;
+    color: #8a1c16;
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   FILTER FORM
+   ============================================================ */
+
+.soil-history .filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin-bottom: 30px;
+    padding: 18px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   FILTER LABEL
+   ============================================================ */
+
+.soil-history .filter-form label {
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+/* ============================================================
+   FILTER SELECT
+   ============================================================ */
+
+.soil-history .filter-form select {
+    min-width: 190px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #bfc9bf;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #333;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.soil-history .filter-form select:focus {
+    outline: none;
+
+    border-color: #214523;
+
+    box-shadow: 0 0 0 2px rgba(33, 69, 35, 0.12);
+}
+
+
+/* ============================================================
+   APPLY BUTTON
+   ============================================================ */
+
+.soil-history .filter-form button {
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #214523;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.soil-history .filter-form button:hover {
+    background: #2f6333;
+}
+
+
+.soil-history .filter-form button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   DEVICE SELECTOR TITLE
+   ============================================================ */
+
+.soil-history > h3 {
+    margin: 25px 0 12px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   DEVICE SELECTOR
+   ============================================================ */
+
+.soil-history .device-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 25px;
+}
+
+
+/* ============================================================
+   DEVICE SELECT BUTTON
+   ============================================================ */
+
+.soil-history .device-select-button {
+    padding: 10px 18px;
+
+    border: 1px solid #214523;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #214523;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.soil-history .device-select-button:hover {
+    background: #eaf2ea;
+}
+
+
+.soil-history .device-select-button:active {
+    transform: translateY(1px);
+}
+
+
+.soil-history .device-select-button:focus {
+    outline: none;
+
+    box-shadow: 0 0 0 2px rgba(33, 69, 35, 0.15);
+}
+
+
+/* ============================================================
+   DEVICE PANEL
+   ============================================================ */
+
+.soil-history .device-panel {
+    margin-top: 20px;
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   HIDDEN DEVICE PANEL
+   ============================================================ */
+
+.soil-history .device-panel.is-hidden {
+    display: none;
+}
+
+
+/* ============================================================
+   DEVICE PANEL TITLE
+   ============================================================ */
+
+.soil-history .device-panel h2 {
+    margin: 0 0 20px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 2px solid #214523;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   DEVICE HISTORY TITLE
+   ============================================================ */
+
+.soil-history .device-panel h3 {
+    margin: 25px 0 10px;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   DEVICE INFORMATION
+   ============================================================ */
+
+.soil-history .device-panel p {
+    margin: 8px 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #444;
+}
+
+
+.soil-history .device-panel p strong {
+    color: #222;
+}
+
+
+/* ============================================================
+   DEVICE PANEL DIVIDER
+   ============================================================ */
+
+.soil-history .device-panel hr {
+    margin: 25px 0;
+
+    border: none;
+    border-top: 1px solid #dfe4df;
+}
+
+
+/* ============================================================
+   SHOWING FILTER INFORMATION
+   ============================================================ */
+
+.soil-history .device-panel h3 + p {
+    margin-bottom: 18px;
+    padding: 10px 14px;
+
+    border-left: 4px solid #6a8f6b;
+
+    background: #f4f8f4;
+
+    color: #4a5c4a;
+}
+
+
+/* ============================================================
+   HISTORY TABLE
+   ============================================================ */
+
+.soil-history .history-table {
+    width: 100%;
+
+    margin-top: 15px;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   HISTORY TABLE HEADER
+   ============================================================ */
+
+.soil-history .history-table thead th {
+    padding: 13px 12px;
+
+    border: 1px solid #cfd8cf;
+
+    background: #214523;
+    color: #ffffff;
+
+    text-align: center;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   HISTORY TABLE BODY
+   ============================================================ */
+
+.soil-history .history-table tbody td {
+    padding: 11px 12px;
+
+    border: 1px solid #dfe4df;
+
+    text-align: center;
+
+    color: #333;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   ALTERNATING TABLE ROWS
+   ============================================================ */
+
+.soil-history .history-table tbody tr:nth-child(even) {
+    background: #f7f9f7;
+}
+
+
+/* ============================================================
+   TABLE HOVER
+   ============================================================ */
+
+.soil-history .history-table tbody tr:hover {
+    background: #edf4ed;
+}
+
+
+/* ============================================================
+   EMPTY HISTORY MESSAGE
+   ============================================================ */
+
+.soil-history .device-panel > p:last-child {
+    color: #666;
+}
+
+
+/* ============================================================
+   NO DEVICES MESSAGE
+   ============================================================ */
+
+.soil-history > p {
+    margin-top: 20px;
+    padding: 20px;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    text-align: center;
+
+    color: #666;
+}
+
+
+/* ============================================================
+   TABLE RESPONSIVENESS
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .soil-history {
+        padding: 25px 15px 40px;
+    }
+
+
+    .soil-history .device-panel {
+        padding: 18px;
+    }
+
+
+    .soil-history .history-table {
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE FILTER
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .soil-history h1 {
+        font-size: 25px;
+
+        margin-bottom: 22px;
+    }
+
+
+    .soil-history .filter-form {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+    }
+
+
+    .soil-history .filter-form label {
+        text-align: left;
+    }
+
+
+    .soil-history .filter-form select,
+    .soil-history .filter-form button {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    .soil-history .device-selector {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 8px;
+    }
+
+
+    .soil-history .device-select-button {
+        width: 100%;
+    }
+
+
+    .soil-history .device-panel {
+        padding: 15px;
+    }
+
+
+    .soil-history .device-panel h2 {
+        font-size: 21px;
+    }
+
+
+    .soil-history .device-panel h3 {
+        font-size: 18px;
+    }
+
+
+    .soil-history .history-table {
+        font-size: 13px;
+    }
+
+
+    .soil-history .history-table thead th,
+    .soil-history .history-table tbody td {
+        padding: 9px 10px;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .soil-history {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .soil-history .device-selector {
+        grid-template-columns: 1fr;
+    }
+
+
+    .soil-history .device-panel {
+        padding: 12px;
+    }
+
+}
+
+
+/* ============================================================
+   SOIL HISTORY NAVIGATION
+   ============================================================ */
+
+.soil-history .soil-history-navigation {
+    margin-top: 35px;
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   NAVIGATION DIVIDER
+   ============================================================ */
+
+.soil-history .soil-history-navigation hr {
+    margin: 0 0 25px;
+
+    border: none;
+    border-top: 1px solid #d9e1d9;
+}
+
+
+/* ============================================================
+   USER DASHBOARD BUTTON
+   ============================================================ */
+
+.soil-history .soil-history-navigation .dashboard-button {
+    display: inline-block;
+
+    padding: 11px 22px;
+
+    border: 1px solid #214523;
+    border-radius: 5px;
+
+    background: #214523;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.soil-history .soil-history-navigation .dashboard-button:hover {
+    background: #2f6333;
+}
+
+
+.soil-history .soil-history-navigation .dashboard-button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   MOBILE NAVIGATION
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .soil-history .soil-history-navigation {
+        margin-top: 30px;
+    }
+
+
+    .soil-history .soil-history-navigation .dashboard-button {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 11px 15px;
+    }
+
+}

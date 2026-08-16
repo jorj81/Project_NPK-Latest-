@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Farmer Dashboard
+{% endblock %}
+
+
+<!-- ============================================================ -->
+<!-- PAGE-SPECIFIC CSS                                            -->
+<!-- ============================================================ -->
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/farmer/dashboard.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="farmer-dashboard">
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE TITLE                                               -->
+    <!-- ======================================================== -->
+
+    <h1>
+        Farmer Dashboard
+    </h1>
+
+
+    <!-- ======================================================== -->
+    <!-- WELCOME MESSAGE                                          -->
+    <!-- ======================================================== -->
+
+    <p>
+        Welcome,
+        <strong>
+            {{ session.get("username") }}
+        </strong>
+    </p>
+
+
+    <hr>
+
+
+    <!-- ======================================================== -->
+    <!-- ESP32 SOIL MONITORING                                    -->
+    <!-- ======================================================== -->
+
+    <h3>
+        ESP32 Soil Monitoring
+    </h3>
+
+
+    <!-- ======================================================== -->
+    <!-- CURRENT SOIL DATA                                        -->
+    <!-- ======================================================== -->
+
+    <p>
+
+        <a
+            href="{{ url_for('farmer_dashboard.farmer_soil_data_page') }}"
+            class="farmer-button"
+        >
+            View Current Soil Data
+        </a>
+
+    </p>
+
+
+    <!-- ======================================================== -->
+    <!-- SOIL HISTORY                                             -->
+    <!-- ======================================================== -->
+
+    <p>
+
+        <a
+            href="{{ url_for('farmer_dashboard.farmer_soil_history_page') }}"
+            class="farmer-button"
+        >
+            View Soil History
+        </a>
+
+    </p>
+
+
+    <hr>
+
+
+    <!-- ======================================================== -->
+    <!-- ESP32 DEVICE MANAGEMENT                                  -->
+    <!-- ======================================================== -->
+
+    <h3>
+        ESP32 Device Management
+    </h3>
+
+
+    <!-- ======================================================== -->
+    <!-- REGISTER DEVICE                                          -->
+    <!-- ======================================================== -->
+
+    <p>
+
+        <a
+            href="{{ url_for('farmer_dashboard.create_device_page') }}"
+            class="farmer-button"
+        >
+            Register Device
+        </a>
+
+    </p>
+
+
+    <!-- ======================================================== -->
+    <!-- MY DEVICES                                               -->
+    <!-- ======================================================== -->
+
+    <p>
+
+        <a
+            href="{{ url_for('farmer_dashboard.devices_page') }}"
+            class="farmer-button"
+        >
+            My Devices
+        </a>
+
+    </p>
+
+
+    <hr>
+
+
+    <!-- ======================================================== -->
+    <!-- COMMENTS                                                -->
+    <!-- ======================================================== -->
+
+    <h3>
+        Comments
+    </h3>
+
+
+    <p>
+        You can add, edit, or delete your comments.
+    </p>
+
+
+    <p>
+
+        <a
+            href="{{ url_for('farmer_dashboard.comment_page') }}"
+            class="farmer-button"
+        >
+            Comments
+        </a>
+
+    </p>
+
+
+</div>
+
+{% endblock %}

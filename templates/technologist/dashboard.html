@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+
+
+{% set show_back_button = false %}
+
+
+
+{% block title %}
+Technologist Dashboard
+{% endblock %}
+
+
+
+<!-- ============================================================ -->
+<!-- TECHNOLOGIST DASHBOARD CSS                                  -->
+<!-- ============================================================ -->
+
+
+{% block page_css %}
+
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/technologist/dashboard.css') }}"
+>
+
+
+{% endblock %}
+
+
+
+<!-- ============================================================ -->
+<!-- TECHNOLOGIST DASHBOARD CONTENT                              -->
+<!-- ============================================================ -->
+
+
+{% block content %}
+
+
+
+<div class="technologist-dashboard">
+
+
+    <!-- ======================================================== -->
+    <!-- TECHNOLOGIST DASHBOARD                                   -->
+    <!-- ======================================================== -->
+
+
+    <h1>
+        Technologist Dashboard
+    </h1>
+
+
+
+    <!-- ======================================================== -->
+    <!-- TECHNOLOGIST INFORMATION + DIGITAL CLOCK                -->
+    <!-- ======================================================== -->
+
+
+    <div class="technologist-info-clock">
+
+
+        <!-- ==================================================== -->
+        <!-- TECHNOLOGIST INFORMATION                             -->
+        <!-- ==================================================== -->
+
+
+        <div class="technologist-information">
+
+
+            <h2>
+                Technologist Information
+            </h2>
+
+
+            <p>
+                <strong>User ID:</strong>
+                {{ session.get("user_id") }}
+            </p>
+
+
+            <p>
+                <strong>Username:</strong>
+                {{ session.get("username") }}
+            </p>
+
+
+            <p>
+                <strong>Role:</strong>
+                {{ session.get("role") }}
+            </p>
+
+
+        </div>
+
+
+
+        <!-- ==================================================== -->
+        <!-- DIGITAL DATE AND TIME                                 -->
+        <!-- ==================================================== -->
+
+
+        <div class="digital-clock-section">
+
+
+            <div class="digital-clock">
+
+
+                <!-- ============================================ -->
+                <!-- DIGITAL DATE                                 -->
+                <!-- ============================================ -->
+
+
+                <div class="digital-date">
+
+                    <span id="current-date"></span>
+
+                </div>
+
+
+
+                <!-- ============================================ -->
+                <!-- DIGITAL TIME                                 -->
+                <!-- ============================================ -->
+
+
+                <div class="digital-time">
+
+                    <span id="current-time"></span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <hr>
+
+
+
+    <!-- ======================================================== -->
+    <!-- ESP32 SOIL DATA                                          -->
+    <!-- ======================================================== -->
+
+
+    <div class="soil-data-section">
+
+
+        <h2>
+            ESP32 Soil Data
+        </h2>
+
+
+
+        <p>
+            View sensor data from the ESP32 devices.
+        </p>
+
+
+
+        <!-- ==================================================== -->
+        <!-- CURRENT SOIL DATA BUTTON                             -->
+        <!-- ==================================================== -->
+
+
+        <a
+            href="{{ url_for('technologist_dashboard.soil_data_page') }}"
+        >
+
+
+            <button type="button">
+
+                View Current Soil Data
+
+            </button>
+
+
+        </a>
+
+
+
+        <br>
+        <br>
+
+
+
+        <!-- ==================================================== -->
+        <!-- SOIL HISTORY BUTTON                                  -->
+        <!-- ==================================================== -->
+
+
+        <a
+            href="{{ url_for('technologist_dashboard.soil_history_page') }}"
+        >
+
+
+            <button type="button">
+
+                View Soil History
+
+            </button>
+
+
+        </a>
+
+
+
+        <br>
+        <br>
+
+
+
+        <!-- ==================================================== -->
+        <!-- MY ESP32 DEVICES BUTTON                              -->
+        <!-- ==================================================== -->
+
+
+        <a
+            href="{{ url_for('technologist_dashboard.technologist_devices_page') }}"
+        >
+
+
+            <button type="button">
+
+                View My ESP32 Devices
+
+            </button>
+
+
+        </a>
+
+
+
+        <br>
+        <br>
+
+
+
+        <!-- ==================================================== -->
+        <!-- COMMENTS BUTTON                                      -->
+        <!-- ==================================================== -->
+
+
+        <a
+            href="{{ url_for('technologist_dashboard.comment_page') }}"
+        >
+
+
+            <button type="button">
+
+                Comments
+
+            </button>
+
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- ======================================================== -->
+    <!-- LIVE DATE AND TIME JAVASCRIPT                            -->
+    <!-- ======================================================== -->
+
+
+    <script>
+
+
+        function updateDateTime()
+        {
+
+
+            const now = new Date();
+
+
+
+            // ----------------------------------------------------
+            // DATE
+            // ----------------------------------------------------
+
+
+            const dateOptions = {
+
+
+                year: "numeric",
+
+
+                month: "long",
+
+
+                day: "numeric"
+
+
+            };
+
+
+
+            const currentDate =
+                now.toLocaleDateString(
+                    "en-PH",
+                    dateOptions
+                );
+
+
+
+            // ----------------------------------------------------
+            // TIME
+            // ----------------------------------------------------
+
+
+            const timeOptions = {
+
+
+                hour: "2-digit",
+
+
+                minute: "2-digit",
+
+
+                second: "2-digit",
+
+
+                hour12: true
+
+
+            };
+
+
+
+            const currentTime =
+                now.toLocaleTimeString(
+                    "en-PH",
+                    timeOptions
+                );
+
+
+
+            // ----------------------------------------------------
+            // DISPLAY DATE
+            // ----------------------------------------------------
+
+
+            document.getElementById(
+                "current-date"
+            ).textContent = currentDate;
+
+
+
+            // ----------------------------------------------------
+            // DISPLAY TIME
+            // ----------------------------------------------------
+
+
+            document.getElementById(
+                "current-time"
+            ).textContent = currentTime;
+
+
+        }
+
+
+
+        // --------------------------------------------------------
+        // UPDATE IMMEDIATELY
+        // --------------------------------------------------------
+
+
+        updateDateTime();
+
+
+
+        // --------------------------------------------------------
+        // UPDATE EVERY SECOND
+        // --------------------------------------------------------
+
+
+        setInterval(
+            updateDateTime,
+            1000
+        );
+
+
+    </script>
+
+
+</div>
+
+
+
+{% endblock %}
+

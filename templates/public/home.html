@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPK Soil Monitoring System</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/home.css') }}"
+>
+
+
+</head>
+
+<body>
+
+
+
+<h1>NPK Soil Monitoring System</h1>
+
+
+<p class="indent">
+    The NPK Soil Monitoring System is an IoT-based system
+    that measures soil nutrients and moisture in real time. It helps farmers
+    manage irrigation and fertilizer use and sends SMS notifications when
+    soil conditions need attention. The system uses solar power, allowing it
+    to operate in remote areas with limited access to electricity.
+</p>
+
+
+<hr>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        {% for category, message in messages %}
+
+            <p>
+                <strong>{{ category|capitalize }}:</strong>
+                {{ message }}
+            </p>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+
+
+<div class="server-info">
+
+    <h2>Server Information</h2>
+
+    <p>
+        <strong>Local IP Address:</strong>
+        {{ local_ip }}
+    </p>
+
+    <p>
+        <strong>Dashboard URL:</strong>
+        <a href="{{ server_url }}">{{ server_url }}</a>
+    </p>
+
+    <p>
+        Connect your phone to the same Wi-Fi network and open the
+        dashboard URL in your browser.
+    </p>
+
+</div>
+
+
+<hr>
+
+
+
+
+
+<div class="actions">
+
+    <a href="{{ url_for('auth.login') }}">Login</a>
+
+    <a href="{{ url_for('auth.add_user_form') }}">Register</a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+for creating tabele:
+
+CREATE TABLE countries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+
+
+
+for inserting content:
+
+INSERT INTO countries (name)
+VALUES ('Philippines');
+
+
+for creating  table:
+
+CREATE TABLE regions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country_id INT NOT NULL,
+    region_name VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (country_id)
+    REFERENCES countries(id)
+);
+
+
+for inserting content:
+
+INSERT INTO regions
+(country_id, region_name)
+VALUES
+(1, 'Central Luzon');
+
+
+
+for creating table:
+
+CREATE TABLE provinces (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    region_id INT NOT NULL,
+    province_name VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (region_id)
+    REFERENCES regions(id)
+);
+
+
+for inserting inside province:
+
+INSERT INTO provinces
+(region_id, province_name)
+VALUES
+(1, 'Nueva Ecija');
+
+
+
+for creating table:
+
+CREATE TABLE cities_municipalities (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    province_id INT NOT NULL,
+    city_name VARCHAR(100) NOT NULL,
+    type ENUM('City','Municipality') NOT NULL,
+
+    FOREIGN KEY (province_id)
+    REFERENCES provinces(id)
+);
+
+for inserting content:
+
+INSERT INTO cities_municipalities
+(province_id, city_name, type)
+VALUES
+(1, 'Cabanatuan City', 'City');
+
+
+for creating table:
+
+CREATE TABLE barangays (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    city_id INT NOT NULL,
+    barangay_name VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (city_id)
+    REFERENCES cities_municipalities(id)
+);
+
+for inserting content:
+
+INSERT INTO barangays
+(city_id, barangay_name)
+VALUES
+(1,'Kalikid Sur'),
+(1,'Kalikid Norte'),
+(1,'Barangay 1');

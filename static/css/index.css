@@ -1,0 +1,152 @@
+/* Page */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f2f5f7;
+}
+
+/* Center the card */
+
+.terms-container{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 20px;
+
+    box-sizing:border-box;
+}
+
+/* Card */
+
+.terms-card{
+
+    width:850px;
+    max-width:100%;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+    box-sizing:border-box;
+}
+
+.terms-card h1{
+
+    text-align:center;
+
+    margin-top:0;
+    margin-bottom:8px;
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:25px;
+}
+
+/* Scrollable Terms */
+
+.terms-window{
+
+    height:400px;
+
+    overflow-y:auto;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    background:#fafafa;
+
+    padding:20px;
+
+    box-sizing:border-box;
+}
+
+/* Text loaded from terms.txt */
+
+.terms-window pre{
+
+    margin:0;
+
+    white-space:pre-wrap;
+
+    word-wrap:break-word;
+
+    font-family:"Times New Roman", serif;
+
+    font-size:16px;
+
+    line-height:1.8;
+}
+
+/* Agreement section */
+
+.accept-box{
+
+    margin-top:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+}
+
+.checkbox-label{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+.checkbox-label input{
+
+    margin-top:3px;
+}
+
+.agree-button{
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2e7d32;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.agree-button:hover{
+
+    background:#1b5e20;
+}

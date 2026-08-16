@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+
+<body>
+
+    <div class="terms-container">
+
+        <div class="terms-card">
+
+            <h1>NPK Soil Monitoring System</h1>
+            <p class="subtitle">
+                Please read the Terms and Conditions carefully before continuing.
+            </p>
+
+            <div class="terms-window">
+                <pre>{{ terms_text }}</pre>
+            </div>
+
+            <form action="{{ url_for('public.accept_terms') }}" method="POST" class="accept-box">
+
+                <label class="checkbox-label">
+                    <input type="checkbox" name="agree" required>
+                    <span>
+                        I have read, understood, and agree to the Terms and Conditions.
+                    </span>
+                </label>
+
+                <button type="submit" class="agree-button">
+                    I Agree & Continue
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

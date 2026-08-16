@@ -1,0 +1,741 @@
+/* ============================================================
+   FARMER - COMMENTS PAGE
+   ============================================================ */
+
+   .farmer-comments-page {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 30px 20px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #333;
+
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.comments-header {
+
+    margin-bottom: 30px;
+
+}
+
+
+.comments-header h1 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 32px;
+
+    font-weight: 600;
+
+    color: #214523;
+
+}
+
+
+.comments-header p {
+
+    margin: 0;
+
+    color: #666;
+
+    line-height: 1.6;
+
+}
+
+
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
+
+.flash-messages {
+
+    margin-bottom: 25px;
+
+}
+
+
+.flash-message {
+
+    margin-bottom: 10px;
+
+    padding: 12px 15px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 5px;
+
+    background-color: #f5f5f5;
+
+    color: #333;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ============================================================
+   SUCCESS MESSAGE
+   ============================================================ */
+
+.flash-message.success {
+
+    border-color: #a9c9aa;
+
+    background-color: #edf7ed;
+
+    color: #285c2c;
+
+}
+
+
+/* ============================================================
+   ERROR MESSAGE
+   ============================================================ */
+
+.flash-message.error {
+
+    border-color: #d6aaaa;
+
+    background-color: #fbeeee;
+
+    color: #8a2929;
+
+}
+
+
+/* ============================================================
+   ADD COMMENT SECTION
+   ============================================================ */
+
+.add-comment-section {
+
+    margin-bottom: 35px;
+
+    padding: 25px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05);
+
+}
+
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+
+.add-comment-section h2,
+.my-comments-section > h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: #214523;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================
+   FORM GROUP
+   ============================================================ */
+
+.form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ============================================================
+   LABEL
+   ============================================================ */
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #444;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================
+   TEXTAREA
+   ============================================================ */
+
+.comment-form textarea,
+.edit-comment-form textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    min-height: 130px;
+
+    padding: 12px;
+
+    border: 1px solid #bdbdbd;
+
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #333;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    resize: vertical;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+/* ============================================================
+   TEXTAREA FOCUS
+   ============================================================ */
+
+.comment-form textarea:focus,
+.edit-comment-form textarea:focus {
+
+    border-color: #214523;
+
+    box-shadow:
+        0 0 0 2px rgba(33, 69, 35, 0.10);
+
+}
+
+
+/* ============================================================
+   ADD COMMENT BUTTON
+   ============================================================ */
+
+.add-comment-button {
+
+    padding: 11px 20px;
+
+    border: 1px solid #214523;
+
+    border-radius: 5px;
+
+    background-color: #214523;
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* ============================================================
+   ADD COMMENT BUTTON HOVER
+   ============================================================ */
+
+.add-comment-button:hover {
+
+    background-color: #2f6333;
+
+    border-color: #2f6333;
+
+}
+
+
+/* ============================================================
+   MY COMMENTS SECTION
+   ============================================================ */
+
+.my-comments-section {
+
+    width: 100%;
+
+}
+
+
+/* ============================================================
+   COMMENTS LIST
+   ============================================================ */
+
+.comments-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+/* ============================================================
+   COMMENT CARD
+   ============================================================ */
+
+.comment-card {
+
+    padding: 25px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05);
+
+}
+
+
+/* ============================================================
+   COMMENT META
+   ============================================================ */
+
+.comment-meta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px 25px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #e1e1e1;
+
+    color: #555;
+
+    font-size: 13px;
+
+}
+
+
+/* ============================================================
+   CURRENT COMMENT
+   ============================================================ */
+
+.current-comment {
+
+    margin-top: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.current-comment h3 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 17px;
+
+    color: #214523;
+
+}
+
+
+.current-comment p {
+
+    margin: 0;
+
+    padding: 15px;
+
+    border-left: 4px solid #214523;
+
+    background-color: #f5f8f5;
+
+    color: #444;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+
+}
+
+
+/* ============================================================
+   EDIT COMMENT SECTION
+   ============================================================ */
+
+.edit-comment-section {
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e1e1e1;
+
+}
+
+
+.edit-comment-section h3 {
+
+    margin: 0 0 12px 0;
+
+    font-size: 17px;
+
+    color: #444;
+
+}
+
+
+/* ============================================================
+   EDIT FORM
+   ============================================================ */
+
+.edit-comment-form {
+
+    width: 100%;
+
+}
+
+
+/* ============================================================
+   SAVE CHANGES BUTTON
+   ============================================================ */
+
+.save-comment-button {
+
+    margin-top: 10px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #214523;
+
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #214523;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* ============================================================
+   SAVE CHANGES BUTTON HOVER
+   ============================================================ */
+
+.save-comment-button:hover {
+
+    background-color: #214523;
+
+    color: #ffffff;
+
+}
+
+
+/* ============================================================
+   DELETE SECTION
+   ============================================================ */
+
+.delete-comment-section {
+
+    margin-top: 20px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eeeeee;
+
+}
+
+
+/* ============================================================
+   DELETE COMMENT BUTTON
+   ============================================================ */
+
+.delete-comment-button {
+
+    padding: 9px 16px;
+
+    border: 1px solid #a33a3a;
+
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #a33a3a;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* ============================================================
+   DELETE COMMENT BUTTON HOVER
+   ============================================================ */
+
+.delete-comment-button:hover {
+
+    background-color: #a33a3a;
+
+    border-color: #a33a3a;
+
+    color: #ffffff;
+
+}
+
+
+/* ============================================================
+   NO COMMENTS
+   ============================================================ */
+
+.no-comments {
+
+    padding: 35px 25px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    text-align: center;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.no-comments h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 10px;
+
+    color: #214523;
+
+}
+
+
+.no-comments p {
+
+    margin: 0;
+
+    color: #666;
+
+}
+
+
+/* ============================================================
+   PAGE NAVIGATION
+   ============================================================ */
+
+.page-navigation {
+
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #dddddd;
+
+}
+
+
+/* ============================================================
+   BACK TO DASHBOARD BUTTON
+   ============================================================ */
+
+.back-dashboard-button {
+
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    border: 1px solid #888888;
+
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #444444;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+/* ============================================================
+   BACK BUTTON HOVER
+   ============================================================ */
+
+.back-dashboard-button:hover {
+
+    background-color: #eeeeee;
+
+    border-color: #666666;
+
+    color: #333333;
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .farmer-comments-page {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .comments-header h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .add-comment-section {
+
+        padding: 18px;
+
+    }
+
+
+    .comment-card {
+
+        padding: 18px;
+
+    }
+
+
+    .comment-meta {
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+
+    .add-comment-button {
+
+        width: 100%;
+
+    }
+
+
+    .save-comment-button {
+
+        width: 100%;
+
+    }
+
+
+    .delete-comment-button {
+
+        width: 100%;
+
+    }
+
+
+    .back-dashboard-button {
+
+        display: block;
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        text-align: center;
+
+    }
+
+}

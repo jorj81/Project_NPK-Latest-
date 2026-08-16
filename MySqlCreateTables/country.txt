@@ -1,0 +1,14 @@
+for creating tabele:
+
+CREATE TABLE countries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+
+
+
+for inserting content:
+
+INSERT INTO countries (name)
+VALUES ('Philippines');

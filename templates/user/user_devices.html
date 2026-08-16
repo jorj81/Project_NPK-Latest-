@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}
+My ESP32 Devices
+{% endblock %}
+
+{% block content %}
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/user/user_devices.css') }}"
+>
+
+{% endblock %}
+
+<div class="my-devices-page">
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE TITLE                                                   -->
+    <!-- ============================================================ -->
+
+    <h1>
+        My ESP32 Devices
+    </h1>
+
+
+    <!-- ============================================================ -->
+    <!-- FLASH MESSAGES                                               -->
+    <!-- ============================================================ -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            <div class="flash-messages">
+
+                {% for category, message in messages %}
+
+                    <p class="flash-message flash-{{ category }}">
+
+                        <strong>
+                            {{ category|capitalize }}:
+                        </strong>
+
+                        {{ message }}
+
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ============================================================ -->
+    <!-- DEVICE LIST                                                  -->
+    <!-- ============================================================ -->
+
+    {% if devices %}
+
+
+    <h2>
+        Registered ESP32 Devices
+    </h2>
+
+
+    <div class="device-table-container">
+
+        <table
+            class="device-table"
+            border="1"
+            cellpadding="8"
+            cellspacing="0"
+        >
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Device ID
+                    </th>
+
+                    <th>
+                        ESP32 Code
+                    </th>
+
+                    <th>
+                        Location
+                    </th>
+
+                    <th>
+                        Barangay
+                    </th>
+
+                    <th>
+                        IP Address
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for device in devices %}
+
+
+                <tr>
+
+
+                    <!-- ================================================= -->
+                    <!-- DEVICE ID                                         -->
+                    <!-- ================================================= -->
+
+                    <td>
+
+                        {{ device.device_id }}
+
+                    </td>
+
+
+                    <!-- ================================================= -->
+                    <!-- ESP32 CODE                                        -->
+                    <!-- ================================================= -->
+
+                    <td>
+
+                        {% if device.esp32_code %}
+
+                            {{ device.esp32_code }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ================================================= -->
+                    <!-- LOCATION                                          -->
+                    <!-- ================================================= -->
+
+                    <td>
+
+                        {% if device.location %}
+
+                            {{ device.location }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ================================================= -->
+                    <!-- BARANGAY                                          -->
+                    <!-- ================================================= -->
+
+                    <td>
+
+                        {% if device.barangay_name %}
+
+                            {{ device.barangay_name }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ================================================= -->
+                    <!-- IP ADDRESS                                        -->
+                    <!-- ================================================= -->
+
+                    <td>
+
+                        {% if device.ip_address %}
+
+                            {{ device.ip_address }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- ============================================================ -->
+    <!-- NO DEVICES                                                   -->
+    <!-- ============================================================ -->
+
+    <div class="no-devices">
+
+        <h2>
+            No ESP32 Devices
+        </h2>
+
+
+        <p>
+            You do not have any ESP32 devices registered.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+<!-- ============================================================ -->
+<!-- NAVIGATION                                                   -->
+<!-- ============================================================ -->
+
+<div class="device-navigation">
+
+    <hr>
+
+    <a
+        href="{{ url_for('user_dashboard.dashboard_page') }}"
+    >
+        <button type="button">
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+{% endblock %}

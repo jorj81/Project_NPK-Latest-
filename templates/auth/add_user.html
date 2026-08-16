@@ -1,0 +1,318 @@
+<!doctype html>
+
+<html>
+<head>
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_user.css') }}">
+</head>
+
+<body>
+
+<h1>Register an Account</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %} <p> <strong>{{ category }}:</strong> {{ message }} </p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="{{ url_for('auth.create_user_route') }}" method="post">
+
+<!-- Username -->
+<label>Username:</label>
+<input
+    type="text"
+    name="username"
+    required
+>
+
+<br><br>
+
+
+<!-- Password -->
+<label>Password:</label>
+<input
+    type="password"
+    name="password"
+    required
+>
+
+<br><br>
+
+
+<!-- Contact Number -->
+<label>Mobile Number:</label>
+<input
+    type="tel"
+    name="contact_number"
+    placeholder="09XXXXXXXXX"
+    pattern="09[0-9]{9}"
+    maxlength="11"
+    inputmode="numeric"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,11)"
+    required
+>
+
+<br><br>
+
+
+<!-- User Role -->
+<label>Select Role:</label>
+
+<select
+    name="user_role_id"
+    required
+>
+    <option value="">User</option>
+
+    {% for role in roles %}
+        <option value="{{ role.id }}">
+            {{ role.role_name|capitalize }}
+        </option>
+    {% endfor %}
+
+</select>
+
+<br><br>
+
+
+<h3>Address</h3>
+
+
+<!-- Country -->
+<label>Country:</label>
+
+<select>
+    <option>Philippines</option>
+</select>
+
+<br><br>
+
+
+<!-- Region -->
+<label>Region:</label>
+
+<select
+    id="region"
+    required
+>
+    <option value="">Select Region</option>
+</select>
+
+<br><br>
+
+
+<!-- Province -->
+<label>Province:</label>
+
+<select
+    id="province"
+    required
+>
+    <option value="">Select Province</option>
+</select>
+
+<br><br>
+
+
+<!-- City/Municipality -->
+<label>City/Municipality:</label>
+
+<select
+    id="city"
+    required
+>
+    <option value="">Select City/Municipality</option>
+</select>
+
+<br><br>
+
+
+<!-- Barangay -->
+<label>Barangay:</label>
+
+<select
+    id="barangay"
+    name="barangay_id"
+    required
+>
+    <option value="">Select Barangay</option>
+</select>
+
+<br><br>
+
+
+<!-- Submit -->
+<button type="submit">
+    Save User
+</button>
+
+</form>
+
+<br>
+
+<a href="{{ url_for('public.home') }}">
+    Back
+</a>
+
+<script>
+
+// ==========================================
+// LOAD REGIONS
+// ==========================================
+
+fetch("/regions")
+.then(response => response.json())
+.then(data => {
+
+    let region = document.getElementById("region");
+
+    data.forEach(item => {
+
+        region.innerHTML +=
+        `<option value="${item.id}">
+            ${item.region_name}
+        </option>`;
+
+    });
+
+})
+.catch(error => {
+    console.error("Error loading regions:", error);
+});
+
+
+// ==========================================
+// REGION → PROVINCE
+// ==========================================
+
+document.getElementById("region").onchange = function() {
+
+    let region_id = this.value;
+
+    let province = document.getElementById("province");
+    let city = document.getElementById("city");
+    let barangay = document.getElementById("barangay");
+
+    // Reset dependent fields
+    province.innerHTML =
+        '<option value="">Select Province</option>';
+
+    city.innerHTML =
+        '<option value="">Select City/Municipality</option>';
+
+    barangay.innerHTML =
+        '<option value="">Select Barangay</option>';
+
+    if (!region_id) {
+        return;
+    }
+
+    fetch("/provinces/" + region_id)
+    .then(response => response.json())
+    .then(data => {
+
+        data.forEach(item => {
+
+            province.innerHTML +=
+            `<option value="${item.id}">
+                ${item.province_name}
+            </option>`;
+
+        });
+
+    })
+    .catch(error => {
+        console.error("Error loading provinces:", error);
+    });
+
+};
+
+
+// ==========================================
+// PROVINCE → CITY
+// ==========================================
+
+document.getElementById("province").onchange = function() {
+
+    let province_id = this.value;
+
+    let city = document.getElementById("city");
+    let barangay = document.getElementById("barangay");
+
+    // Reset dependent fields
+    city.innerHTML =
+        '<option value="">Select City/Municipality</option>';
+
+    barangay.innerHTML =
+        '<option value="">Select Barangay</option>';
+
+    if (!province_id) {
+        return;
+    }
+
+    fetch("/cities/" + province_id)
+    .then(response => response.json())
+    .then(data => {
+
+        data.forEach(item => {
+
+            city.innerHTML +=
+            `<option value="${item.id}">
+                ${item.city_name}
+            </option>`;
+
+        });
+
+    })
+    .catch(error => {
+        console.error("Error loading cities:", error);
+    });
+
+};
+
+
+// ==========================================
+// CITY → BARANGAY
+// ==========================================
+
+document.getElementById("city").onchange = function() {
+
+    let city_id = this.value;
+
+    let barangay = document.getElementById("barangay");
+
+    // Reset barangay
+    barangay.innerHTML =
+        '<option value="">Select Barangay</option>';
+
+    if (!city_id) {
+        return;
+    }
+
+    fetch("/barangays/" + city_id)
+    .then(response => response.json())
+    .then(data => {
+
+        data.forEach(item => {
+
+            barangay.innerHTML +=
+            `<option value="${item.id}">
+                ${item.barangay_name}
+            </option>`;
+
+        });
+
+    })
+    .catch(error => {
+        console.error("Error loading barangays:", error);
+    });
+
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+
+{% block title %}
+Soil Data
+{% endblock %}
+
+{% block content %}
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/user/current_soil_data.css') }}"
+>
+
+{% endblock %}
+
+<div class="soil-data-page">
+
+
+    <!-- ==================================================== -->
+    <!-- PAGE TITLE                                           -->
+    <!-- ==================================================== -->
+
+    <h1>
+        ESP32 Soil Data
+    </h1>
+
+
+    <!-- ==================================================== -->
+    <!-- ERROR                                                -->
+    <!-- ==================================================== -->
+
+    {% if error %}
+
+    <p class="error-message">
+
+        <strong>
+            Error:
+        </strong>
+
+        {{ error }}
+
+    </p>
+
+    {% endif %}
+
+
+    <!-- ==================================================== -->
+    <!-- DEVICE SECTION                                       -->
+    <!-- ==================================================== -->
+
+    {% if devices %}
+
+
+    <!-- ==================================================== -->
+    <!-- DEVICE BUTTONS                                       -->
+    <!-- ==================================================== -->
+
+    <div class="device-selector">
+
+        <h3>
+            Select ESP32 Device
+        </h3>
+
+
+        {% for device in devices %}
+
+        <button
+            type="button"
+            onclick="showDevice({{ loop.index0 }})"
+        >
+            Device {{ device.device_id }}
+        </button>
+
+        {% endfor %}
+
+    </div>
+
+
+    <br>
+
+
+    <!-- ==================================================== -->
+    <!-- DEVICE DATA                                          -->
+    <!-- ==================================================== -->
+
+    {% for device in devices %}
+
+    <div
+        class="device-panel"
+        id="device-{{ loop.index0 }}"
+        style="display: none;"
+    >
+
+
+        <!-- ================================================ -->
+        <!-- DEVICE INFORMATION                               -->
+        <!-- ================================================ -->
+
+        <h2>
+            Device {{ device.device_id }}
+        </h2>
+
+
+        <p>
+
+            <strong>
+                Device ID:
+            </strong>
+
+            {{ device.device_id }}
+
+        </p>
+
+
+        <!-- ================================================ -->
+        <!-- DEVICE STATUS                                    -->
+        <!-- ================================================ -->
+
+        <p>
+
+            <strong>
+                Status:
+            </strong>
+
+            {% if device.active %}
+
+                Active
+
+            {% else %}
+
+                Offline
+
+            {% endif %}
+
+        </p>
+
+
+        <!-- ================================================ -->
+        <!-- BARANGAY                                         -->
+        <!-- ================================================ -->
+
+        <p>
+
+            <strong>
+                Barangay:
+            </strong>
+
+
+            {% if device.barangay_name %}
+
+                {{ device.barangay_name }}
+
+            {% else %}
+
+                Not available
+
+            {% endif %}
+
+        </p>
+
+
+        <!-- ================================================ -->
+        <!-- LOCATION                                         -->
+        <!-- ================================================ -->
+
+        <p>
+
+            <strong>
+                Location:
+            </strong>
+
+
+            {% if device.location %}
+
+                {{ device.location }}
+
+            {% else %}
+
+                Not available
+
+            {% endif %}
+
+        </p>
+
+
+        <hr>
+
+
+        <!-- ================================================ -->
+        <!-- CURRENT SENSOR DATA                              -->
+        <!-- ================================================ -->
+
+        <h3>
+            Current Sensor Reading
+        </h3>
+
+
+        {% if device.reading_id %}
+
+
+        <table
+            border="1"
+            cellpadding="8"
+            cellspacing="0"
+        >
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Soil Moisture
+                    </th>
+
+                    <th>
+                        Nitrogen
+                    </th>
+
+                    <th>
+                        Phosphorus
+                    </th>
+
+                    <th>
+                        Potassium
+                    </th>
+
+                    <th>
+                        Recorded At
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+
+                    <!-- ==================================== -->
+                    <!-- SOIL MOISTURE                         -->
+                    <!-- ==================================== -->
+
+                    <td>
+
+                        {% if device.soil_moisture is not none %}
+
+                            {{ device.soil_moisture }}
+
+                        {% else %}
+
+                            No data
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ==================================== -->
+                    <!-- NITROGEN                             -->
+                    <!-- ==================================== -->
+
+                    <td>
+
+                        {% if device.nitrogen is not none %}
+
+                            {{ device.nitrogen }}
+
+                        {% else %}
+
+                            No data
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ==================================== -->
+                    <!-- PHOSPHORUS                           -->
+                    <!-- ==================================== -->
+
+                    <td>
+
+                        {% if device.phosphorus is not none %}
+
+                            {{ device.phosphorus }}
+
+                        {% else %}
+
+                            No data
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ==================================== -->
+                    <!-- POTASSIUM                            -->
+                    <!-- ==================================== -->
+
+                    <td>
+
+                        {% if device.potassium is not none %}
+
+                            {{ device.potassium }}
+
+                        {% else %}
+
+                            No data
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- ==================================== -->
+                    <!-- RECORDED AT                          -->
+                    <!-- ==================================== -->
+
+                    <td>
+
+                        {% if device.recorded_at %}
+
+                            {{ device.recorded_at }}
+
+                        {% else %}
+
+                            No reading yet
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+
+        <!-- ================================================ -->
+        <!-- NO SENSOR READING                                -->
+        <!-- ================================================ -->
+
+        <p class="no-reading">
+
+            This device does not have a current sensor
+            reading yet.
+
+        </p>
+
+
+        {% endif %}
+
+
+    </div>
+
+    {% endfor %}
+
+
+    {% else %}
+
+
+    <!-- ==================================================== -->
+    <!-- NO DEVICES                                           -->
+    <!-- ==================================================== -->
+
+    <p class="no-devices">
+
+        No ESP32 devices found.
+
+    </p>
+
+
+    {% endif %}
+
+
+    <!-- ==================================================== -->
+    <!-- DASHBOARD NAVIGATION                                 -->
+    <!-- ==================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('user_dashboard.dashboard_page') }}"
+        >
+
+            <button type="button">
+                Back to Dashboard
+            </button>
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ======================================================== -->
+<!-- DEVICE SWITCHING                                         -->
+<!-- ======================================================== -->
+
+<script>
+
+function showDevice(deviceIndex)
+{
+
+    const panels =
+        document.querySelectorAll(
+            ".device-panel"
+        );
+
+
+    panels.forEach(
+        function(panel)
+        {
+
+            panel.style.display = "none";
+
+        }
+    );
+
+
+    const selectedDevice =
+        document.getElementById(
+            "device-" + deviceIndex
+        );
+
+
+    if (selectedDevice)
+    {
+
+        selectedDevice.style.display = "block";
+
+    }
+
+}
+
+
+// ========================================================
+// SHOW FIRST DEVICE AUTOMATICALLY
+// ========================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function()
+    {
+
+        {% if devices %}
+
+        showDevice(0);
+
+        {% endif %}
+
+    }
+);
+
+</script>
+
+{% endblock %}
+

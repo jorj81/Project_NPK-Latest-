@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            Project NPK 2026
+        {% endblock %}
+    </title>
+
+
+    <!-- ============================================================ -->
+    <!-- BASE CSS                                                     -->
+    <!-- ============================================================ -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/base.css') }}"
+    >
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE-SPECIFIC CSS                                            -->
+    <!-- ============================================================ -->
+
+    {% block page_css %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================================================ -->
+    <!-- SITE HEADER                                                  -->
+    <!-- ============================================================ -->
+
+    <header class="site-header">
+
+        <div class="header-content">
+
+            <h1>
+                Project NPK 2026
+            </h1>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================================================ -->
+    <!-- NAVIGATION                                                   -->
+    <!-- ============================================================ -->
+
+    {% if session.get("user_id") %}
+
+        <nav class="site-navigation">
+
+            <div class="navigation-content">
+
+
+                <!-- ================================================= -->
+                <!-- BACK BUTTON                                       -->
+                <!-- ================================================= -->
+
+                {% if show_back_button | default(true) %}
+
+                    <button
+                        type="button"
+                        class="nav-button back-button"
+                        onclick="history.back()"
+                    >
+                        ← Back
+                    </button>
+
+                {% endif %}
+
+
+                <!-- ================================================= -->
+                <!-- LOGOUT BUTTON                                     -->
+                <!-- ================================================= -->
+
+                <a
+                    href="{{ url_for('auth.logout') }}"
+                    class="nav-button logout-button"
+                >
+                    Logout
+                </a>
+
+
+            </div>
+
+        </nav>
+
+    {% endif %}
+
+
+    <!-- ============================================================ -->
+    <!-- MAIN CONTENT                                                 -->
+    <!-- ============================================================ -->
+
+    <main class="main-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ============================================================ -->
+    <!-- USER HEARTBEAT                                               -->
+    <!-- ============================================================ -->
+
+    {% if session.get("user_id") %}
+
+        <script>
+            window.HEARTBEAT_URL =
+                "{{ url_for('auth.heartbeat') }}";
+        </script>
+
+
+        <script
+            src="{{ url_for('static', filename='js/heartbeat.js') }}"
+        ></script>
+
+    {% endif %}
+
+
+</body>
+
+</html>

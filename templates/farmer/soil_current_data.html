@@ -1,0 +1,609 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Current Soil Data
+{% endblock %}
+
+
+<!-- ============================================================ -->
+<!-- PAGE-SPECIFIC CSS                                            -->
+<!-- ============================================================ -->
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/farmer/current_soil_data.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="farmer-soil-data">
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE TITLE                                               -->
+    <!-- ======================================================== -->
+
+    <h1>
+        Current Soil Data
+    </h1>
+
+
+    <p class="page-description">
+        Current sensor readings from your registered ESP32 devices.
+    </p>
+
+
+    <!-- ======================================================== -->
+    <!-- ERROR                                                    -->
+    <!-- ======================================================== -->
+
+    {% if error %}
+
+    <div class="error-message">
+
+        <strong>
+            Error:
+        </strong>
+
+        {{ error }}
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ======================================================== -->
+    <!-- DEVICE SELECTOR                                          -->
+    <!-- ======================================================== -->
+
+    {% if devices %}
+
+    <section class="device-selector">
+
+        <h3>
+            Select ESP32 Device
+        </h3>
+
+
+        <div class="device-buttons">
+
+            {% for device in devices %}
+
+            <button
+                type="button"
+                class="device-select-button"
+                onclick="showDevice({{ loop.index0 }})"
+            >
+                Device {{ device.device_id }}
+            </button>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- DEVICE DATA                                              -->
+    <!-- ======================================================== -->
+
+    <div class="device-panels">
+
+        {% for device in devices %}
+
+        <div
+            class="device-panel"
+            id="device-{{ loop.index0 }}"
+            style="display: none;"
+        >
+
+
+            <!-- ==================================================== -->
+            <!-- DEVICE HEADER                                       -->
+            <!-- ==================================================== -->
+
+            <div class="device-panel-header">
+
+                <h2>
+                    ESP32 Device {{ device.device_id }}
+                </h2>
+
+                <div class="device-status">
+
+                    {% if device.active %}
+
+                    <span class="status-active">
+                        Active
+                    </span>
+
+                    {% else %}
+
+                    <span class="status-offline">
+                        Offline
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================== -->
+            <!-- DEVICE INFORMATION                                   -->
+            <!-- ==================================================== -->
+
+            <div class="device-information">
+
+                <div class="device-info-item">
+
+                    <span class="info-label">
+                        ESP32 Code
+                    </span>
+
+                    <span class="info-value">
+                        {{ device.esp32_code }}
+                    </span>
+
+                </div>
+
+
+                <div class="device-info-item">
+
+                    <span class="info-label">
+                        Device ID
+                    </span>
+
+                    <span class="info-value">
+                        {{ device.device_id }}
+                    </span>
+
+                </div>
+
+
+                <div class="device-info-item">
+
+                    <span class="info-label">
+                        Location
+                    </span>
+
+                    <span class="info-value">
+
+                        {% if device.location %}
+
+                            {{ device.location }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+                <div class="device-info-item">
+
+                    <span class="info-label">
+                        Barangay
+                    </span>
+
+                    <span class="info-value">
+
+                        {% if device.barangay_name %}
+
+                            {{ device.barangay_name }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+                <div class="device-info-item">
+
+                    <span class="info-label">
+                        IP Address
+                    </span>
+
+                    <span class="info-value">
+
+                        {% if device.ip_address %}
+
+                            {{ device.ip_address }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <!-- ==================================================== -->
+            <!-- CURRENT SENSOR READING                              -->
+            <!-- ==================================================== -->
+
+            <h3>
+                Current Sensor Reading
+            </h3>
+
+
+            {% if device.recorded_at %}
+
+
+            <div class="sensor-table-container">
+
+                <table class="sensor-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Soil Moisture
+                            </th>
+
+                            <th>
+                                Nitrogen
+                            </th>
+
+                            <th>
+                                Phosphorus
+                            </th>
+
+                            <th>
+                                Potassium
+                            </th>
+
+                            <th>
+                                Recorded At
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <!-- ==================================== -->
+                            <!-- SOIL MOISTURE                         -->
+                            <!-- ==================================== -->
+
+                            <td>
+
+                                {% if device.soil_moisture is not none %}
+
+                                    {{ device.soil_moisture }}
+
+                                {% else %}
+
+                                    <span class="no-data">
+                                        No data
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ==================================== -->
+                            <!-- NITROGEN                             -->
+                            <!-- ==================================== -->
+
+                            <td>
+
+                                {% if device.nitrogen is not none %}
+
+                                    {{ device.nitrogen }}
+
+                                {% else %}
+
+                                    <span class="no-data">
+                                        No data
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ==================================== -->
+                            <!-- PHOSPHORUS                           -->
+                            <!-- ==================================== -->
+
+                            <td>
+
+                                {% if device.phosphorus is not none %}
+
+                                    {{ device.phosphorus }}
+
+                                {% else %}
+
+                                    <span class="no-data">
+                                        No data
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ==================================== -->
+                            <!-- POTASSIUM                            -->
+                            <!-- ==================================== -->
+
+                            <td>
+
+                                {% if device.potassium is not none %}
+
+                                    {{ device.potassium }}
+
+                                {% else %}
+
+                                    <span class="no-data">
+                                        No data
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ==================================== -->
+                            <!-- RECORDED AT                          -->
+                            <!-- ==================================== -->
+
+                            <td>
+
+                                {{ device.recorded_at }}
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- ==================================================== -->
+            <!-- NO CURRENT READING                                  -->
+            <!-- ==================================================== -->
+
+            <div class="no-reading">
+
+                <p>
+                    This device does not have a current sensor
+                    reading yet.
+                </p>
+
+            </div>
+
+
+            {% endif %}
+
+
+            <!-- ==================================================== -->
+            <!-- DEVICE IP ADDRESS                                    -->
+            <!-- ==================================================== -->
+
+            {% if device.ip_address %}
+
+            <div class="device-ip">
+
+                <strong>
+                    ESP32 IP Address:
+                </strong>
+
+                {{ device.ip_address }}
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- ======================================================== -->
+    <!-- NO DEVICES                                               -->
+    <!-- ======================================================== -->
+
+    <div class="no-devices">
+
+        <h3>
+            No ESP32 Devices
+        </h3>
+
+        <p>
+            You do not have any ESP32 devices registered.
+        </p>
+
+
+        <a
+            href="{{ url_for('farmer_dashboard.create_device_page') }}"
+            class="farmer-button"
+        >
+            Register ESP32 Device
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+    <!-- ======================================================== -->
+    <!-- NAVIGATION BUTTONS                                       -->
+    <!-- ======================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('farmer_dashboard.dashboard_page') }}"
+            class="farmer-button secondary-button"
+        >
+            Back to Farmer Dashboard
+        </a>
+
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ============================================================ -->
+<!-- DEVICE SWITCHING JAVASCRIPT                                  -->
+<!-- ============================================================ -->
+
+<script>
+
+function showDevice(deviceIndex)
+{
+
+    // --------------------------------------------------------
+    // Get all device panels
+    // --------------------------------------------------------
+
+    const panels =
+        document.querySelectorAll(
+            ".device-panel"
+        );
+
+
+    // --------------------------------------------------------
+    // Hide all device panels
+    // --------------------------------------------------------
+
+    panels.forEach(
+        function(panel)
+        {
+
+            panel.style.display = "none";
+
+        }
+    );
+
+
+    // --------------------------------------------------------
+    // Get all device buttons
+    // --------------------------------------------------------
+
+    const buttons =
+        document.querySelectorAll(
+            ".device-select-button"
+        );
+
+
+    // --------------------------------------------------------
+    // Remove active state from all buttons
+    // --------------------------------------------------------
+
+    buttons.forEach(
+        function(button)
+        {
+
+            button.classList.remove(
+                "active-device"
+            );
+
+        }
+    );
+
+
+    // --------------------------------------------------------
+    // Display selected device
+    // --------------------------------------------------------
+
+    const selectedDevice =
+        document.getElementById(
+            "device-" + deviceIndex
+        );
+
+
+    if (selectedDevice)
+    {
+
+        selectedDevice.style.display = "block";
+
+    }
+
+
+    // --------------------------------------------------------
+    // Highlight selected device button
+    // --------------------------------------------------------
+
+    if (buttons[deviceIndex])
+    {
+
+        buttons[deviceIndex].classList.add(
+            "active-device"
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// SHOW FIRST DEVICE AUTOMATICALLY
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function()
+    {
+
+        {% if devices %}
+
+        showDevice(0);
+
+        {% endif %}
+
+    }
+);
+
+</script>
+
+
+{% endblock %}

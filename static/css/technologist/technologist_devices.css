@@ -1,0 +1,450 @@
+/* ============================================================
+   MY ESP32 DEVICES PAGE
+   ============================================================ */
+
+   .my-devices-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+
+/* ============================================================
+   PAGE TITLE
+   ============================================================ */
+
+.my-devices-page h1 {
+    margin: 0 0 30px;
+
+    text-align: center;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   SECTION TITLE
+   ============================================================ */
+
+.my-devices-page h2 {
+    margin: 25px 0 15px;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   FLASH MESSAGES
+   ============================================================ */
+
+.my-devices-page .flash-messages {
+    margin-bottom: 25px;
+}
+
+
+.my-devices-page .flash-message {
+    margin: 8px 0;
+    padding: 13px 16px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   FLASH SUCCESS
+   ============================================================ */
+
+.my-devices-page .flash-success {
+    border-left: 5px solid #2e7d32;
+
+    background: #edf7ed;
+    color: #245c27;
+}
+
+
+/* ============================================================
+   FLASH ERROR
+   ============================================================ */
+
+.my-devices-page .flash-error {
+    border-left: 5px solid #b3261e;
+
+    background: #fdecea;
+    color: #8a1c16;
+}
+
+
+/* ============================================================
+   FLASH WARNING
+   ============================================================ */
+
+.my-devices-page .flash-warning {
+    border-left: 5px solid #b26a00;
+
+    background: #fff7e6;
+    color: #805000;
+}
+
+
+/* ============================================================
+   FLASH INFO
+   ============================================================ */
+
+.my-devices-page .flash-info {
+    border-left: 5px solid #2767a3;
+
+    background: #edf5fc;
+    color: #24527d;
+}
+
+
+/* ============================================================
+   DEVICE TABLE CONTAINER
+   ============================================================ */
+
+.my-devices-page .device-table-container {
+    width: 100%;
+
+    margin-top: 15px;
+
+    overflow-x: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   DEVICE TABLE
+   ============================================================ */
+
+.my-devices-page .device-table {
+    width: 100%;
+
+    min-width: 750px;
+
+    border-collapse: collapse;
+
+    border: none;
+
+    background: #ffffff;
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   TABLE HEADER
+   ============================================================ */
+
+.my-devices-page .device-table thead th {
+    padding: 14px 15px;
+
+    border: none;
+    border-bottom: 2px solid #173719;
+
+    background: #214523;
+    color: #ffffff;
+
+    text-align: center;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   TABLE BODY
+   ============================================================ */
+
+.my-devices-page .device-table tbody td {
+    padding: 13px 15px;
+
+    border: none;
+    border-bottom: 1px solid #e1e6e1;
+
+    text-align: center;
+
+    color: #333;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   ALTERNATING ROWS
+   ============================================================ */
+
+.my-devices-page .device-table tbody tr:nth-child(even) {
+    background: #f7f9f7;
+}
+
+
+/* ============================================================
+   TABLE HOVER
+   ============================================================ */
+
+.my-devices-page .device-table tbody tr:hover {
+    background: #edf4ed;
+}
+
+
+/* ============================================================
+   LAST TABLE ROW
+   ============================================================ */
+
+.my-devices-page .device-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ============================================================
+   DEVICE ID
+   ============================================================ */
+
+.my-devices-page .device-table tbody td:first-child {
+    font-weight: 600;
+
+    color: #214523;
+}
+
+
+/* ============================================================
+   IP ADDRESS
+   ============================================================ */
+
+.my-devices-page .device-table tbody td:last-child {
+    font-family: "Courier New", Courier, monospace;
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   NO DEVICES
+   ============================================================ */
+
+.my-devices-page .no-devices {
+    margin-top: 25px;
+    padding: 30px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1d9;
+    border-radius: 8px;
+
+    text-align: center;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.my-devices-page .no-devices h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    color: #214523;
+}
+
+
+.my-devices-page .no-devices p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.my-devices-page .device-navigation {
+    margin-top: 35px;
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   NAVIGATION DIVIDER
+   ============================================================ */
+
+.my-devices-page .device-navigation hr {
+    margin: 0 0 25px;
+
+    border: none;
+    border-top: 1px solid #d9e1d9;
+}
+
+
+/* ============================================================
+   BACK TO DASHBOARD LINK
+   ============================================================ */
+
+.my-devices-page .device-navigation a {
+    display: inline-block;
+
+    text-decoration: none;
+}
+
+
+/* ============================================================
+   BACK TO DASHBOARD BUTTON
+   ============================================================ */
+
+.my-devices-page .device-navigation button {
+    padding: 11px 22px;
+
+    border: 1px solid #214523;
+    border-radius: 5px;
+
+    background: #214523;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+/* ============================================================
+   BUTTON HOVER
+   ============================================================ */
+
+.my-devices-page .device-navigation button:hover {
+    background: #2f6333;
+}
+
+
+/* ============================================================
+   BUTTON ACTIVE
+   ============================================================ */
+
+.my-devices-page .device-navigation button:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .my-devices-page {
+        padding: 25px 15px 40px;
+    }
+
+
+    .my-devices-page .device-table {
+        min-width: 700px;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .my-devices-page {
+        padding: 22px 12px 35px;
+    }
+
+
+    .my-devices-page h1 {
+        font-size: 25px;
+
+        margin-bottom: 22px;
+    }
+
+
+    .my-devices-page h2 {
+        font-size: 19px;
+    }
+
+
+    .my-devices-page .device-table {
+        min-width: 700px;
+
+        font-size: 13px;
+    }
+
+
+    .my-devices-page .device-table thead th {
+        padding: 11px 12px;
+    }
+
+
+    .my-devices-page .device-table tbody td {
+        padding: 10px 12px;
+    }
+
+
+    .my-devices-page .device-navigation {
+        margin-top: 30px;
+    }
+
+
+    .my-devices-page .device-navigation a {
+        display: block;
+
+        width: 100%;
+    }
+
+
+    .my-devices-page .device-navigation button {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 11px 15px;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+    .my-devices-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    .my-devices-page .device-table {
+        min-width: 680px;
+    }
+
+}

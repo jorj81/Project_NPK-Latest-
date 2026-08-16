@@ -1,0 +1,19 @@
+for creating table:
+
+CREATE TABLE barangays (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    city_id INT NOT NULL,
+    barangay_name VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (city_id)
+    REFERENCES cities_municipalities(id)
+);
+
+for inserting content:
+
+INSERT INTO barangays
+(city_id, barangay_name)
+VALUES
+(1,'Kalikid Sur'),
+(1,'Kalikid Norte'),
+(1,'Barangay 1');

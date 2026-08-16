@@ -1,0 +1,383 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Comments
+{% endblock %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/user/comments.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="comments-page">
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE TITLE                                                   -->
+    <!-- ============================================================ -->
+
+    <h1>
+        Comments
+    </h1>
+
+
+    <p class="comments-description">
+        You can add, edit, or delete your comments.
+    </p>
+
+
+    <hr>
+
+
+
+    <!-- ============================================================ -->
+    <!-- FLASH MESSAGES                                               -->
+    <!-- ============================================================ -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            <div class="comments-flash-messages">
+
+                {% for category, message in messages %}
+
+                    <p class="comments-flash-message comments-flash-{{ category }}">
+
+                        <strong>
+                            {{ message }}
+                        </strong>
+
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+
+    <!-- ============================================================ -->
+    <!-- DATABASE ERROR                                               -->
+    <!-- ============================================================ -->
+
+    {% if error %}
+
+        <div class="comments-error">
+
+            <p>
+
+                <strong>
+                    Error:
+                </strong>
+
+                {{ error }}
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- ============================================================ -->
+    <!-- ADD COMMENT                                                  -->
+    <!-- ============================================================ -->
+
+    <section class="add-comment-section">
+
+
+        <h2>
+            Add Comment
+        </h2>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('user_dashboard.comment_page') }}"
+            class="add-comment-form"
+        >
+
+
+            <!-- ==================================================== -->
+            <!-- COMMENT INPUT                                        -->
+            <!-- ==================================================== -->
+
+            <div class="comment-form-field">
+
+                <label for="comment">
+
+                    <strong>
+                        Comment:
+                    </strong>
+
+                </label>
+
+
+                <textarea
+                    id="comment"
+                    name="comment"
+                    rows="5"
+                    placeholder="Enter your comment..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- ==================================================== -->
+            <!-- SUBMIT BUTTON                                        -->
+            <!-- ==================================================== -->
+
+            <button
+                type="submit"
+                class="add-comment-button"
+            >
+
+                Add Comment
+
+            </button>
+
+
+        </form>
+
+
+    </section>
+
+
+
+    <hr>
+
+
+
+    <!-- ============================================================ -->
+    <!-- MY COMMENTS                                                  -->
+    <!-- ============================================================ -->
+
+    <section class="my-comments-section">
+
+
+        <h2>
+            My Comments
+        </h2>
+
+
+        {% if comments %}
+
+
+            <div class="comments-list">
+
+
+                {% for comment in comments %}
+
+
+                    <!-- ============================================ -->
+                    <!-- COMMENT CARD                                 -->
+                    <!-- ============================================ -->
+
+                    <div class="comment-card">
+
+
+                        <!-- ======================================== -->
+                        <!-- COMMENT INFORMATION                      -->
+                        <!-- ======================================== -->
+
+                        <div class="comment-information">
+
+
+                            <p>
+
+                                <strong>
+                                    Comment ID:
+                                </strong>
+
+                                {{ comment.id }}
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Username:
+                                </strong>
+
+                                {{ comment.username }}
+
+                            </p>
+
+
+                            {% if comment.created_at %}
+
+                                <p>
+
+                                    <strong>
+                                        Date:
+                                    </strong>
+
+                                    {{ comment.created_at }}
+
+                                </p>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- ======================================== -->
+                        <!-- EDIT COMMENT                             -->
+                        <!-- ======================================== -->
+
+                        <div class="edit-comment-section">
+
+
+                            <h3>
+                                Edit Comment
+                            </h3>
+
+
+                            <form
+                                method="POST"
+                                action="{{ url_for(
+                                    'user_dashboard.edit_comment_page',
+                                    comment_id=comment.id
+                                ) }}"
+                                class="edit-comment-form"
+                            >
+
+
+                                <textarea
+                                    name="comment"
+                                    rows="5"
+                                    required
+                                >{{ comment.comment }}</textarea>
+
+
+                                <button
+                                    type="submit"
+                                    class="save-comment-button"
+                                >
+
+                                    Save Changes
+
+                                </button>
+
+
+                            </form>
+
+
+                        </div>
+
+
+
+                        <!-- ======================================== -->
+                        <!-- DELETE COMMENT                           -->
+                        <!-- ======================================== -->
+
+                        <div class="delete-comment-section">
+
+
+                            <form
+                                method="POST"
+                                action="{{ url_for(
+                                    'user_dashboard.delete_comment_page',
+                                    comment_id=comment.id
+                                ) }}"
+                                onsubmit="return confirm(
+                                    'Are you sure you want to delete this comment?'
+                                );"
+                            >
+
+
+                                <button
+                                    type="submit"
+                                    class="delete-comment-button"
+                                >
+
+                                    Delete Comment
+
+                                </button>
+
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- ==================================================== -->
+            <!-- NO COMMENTS                                         -->
+            <!-- ==================================================== -->
+
+            <div class="no-comments">
+
+                <p>
+                    You have not posted any comments yet.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- ============================================================ -->
+    <!-- BACK TO USER DASHBOARD                                       -->
+    <!-- ============================================================ -->
+
+    <div class="comments-navigation">
+
+
+        <hr>
+
+
+        <a
+            href="{{ url_for('user_dashboard.dashboard_page') }}"
+            class="dashboard-button"
+        >
+
+            Back to User Dashboard
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

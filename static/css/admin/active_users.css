@@ -1,0 +1,974 @@
+/* ============================================================ */
+/* ADMIN ACTIVE USERS PAGE                                      */
+/* CLEAN WHITE + RED THEME                                     */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* ROOT                                                         */
+/* ============================================================ */
+
+:root {
+
+    --red: #c62828;
+
+    --red-dark: #a91f1f;
+
+    --red-light: #fbeaea;
+
+    --background: #f5f6f8;
+
+    --white: #ffffff;
+
+    --border: #e1e3e6;
+
+    --border-light: #eeeeee;
+
+    --text: #222222;
+
+    --text-secondary: #666666;
+
+    --text-muted: #8a8a8a;
+
+}
+
+
+/* ============================================================ */
+/* GLOBAL                                                       */
+/* ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* ============================================================ */
+/* SCROLLBAR                                                    */
+/* ============================================================ */
+
+::-webkit-scrollbar {
+
+    width: 8px;
+
+    height: 8px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #eeeeee;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #c9c9c9;
+
+    border-radius: 10px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: var(--red);
+
+}
+
+
+/* ============================================================ */
+/* MAIN PAGE                                                    */
+/* ============================================================ */
+
+.active-users-page {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 30px 25px 45px;
+
+}
+
+
+/* ============================================================ */
+/* HEADER                                                       */
+/* ============================================================ */
+
+.active-users-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-left: 4px solid var(--red);
+
+    padding: 22px 25px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.header-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.header-accent {
+
+    width: 8px;
+
+    height: 35px;
+
+    background: var(--red);
+
+}
+
+
+.page-label {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--red);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.active-users-header h1 {
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    font-weight: 600;
+
+}
+
+
+.monitoring-label {
+
+    padding: 9px 13px;
+
+    border: 1px solid #efcaca;
+
+    background: var(--red-light);
+
+    color: var(--red);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ============================================================ */
+/* DESCRIPTION                                                  */
+/* ============================================================ */
+
+.page-description {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+
+    padding: 12px 15px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+}
+
+
+.description-icon {
+
+    color: var(--red);
+
+    font-size: 9px;
+
+}
+
+
+.page-description p {
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+}
+
+
+/* ============================================================ */
+/* ACTIVE SUMMARY                                                */
+/* ============================================================ */
+
+.active-summary {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    padding: 20px 22px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-left: 4px solid var(--red);
+
+}
+
+
+/* ============================================================ */
+/* SUMMARY ICON                                                  */
+/* ============================================================ */
+
+.summary-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--red-light);
+
+    border: 1px solid #efcaca;
+
+    color: var(--red);
+
+    font-size: 15px;
+
+}
+
+
+/* ============================================================ */
+/* SUMMARY INFORMATION                                           */
+/* ============================================================ */
+
+.summary-information {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.summary-label {
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+}
+
+
+.summary-count {
+
+    color: var(--text);
+
+    font-size: 27px;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================ */
+/* SUMMARY STATUS                                                */
+/* ============================================================ */
+
+.summary-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-left: auto;
+
+    padding: 8px 11px;
+
+    border: 1px solid #d9ead9;
+
+    background: #f5faf5;
+
+    color: #397239;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+/* ============================================================ */
+/* STATUS DOT                                                    */
+/* ============================================================ */
+
+.status-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background: #45a045;
+
+}
+
+
+/* ============================================================ */
+/* USERS CARD                                                    */
+/* ============================================================ */
+
+.users-card {
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+}
+
+
+/* ============================================================ */
+/* SECTION HEADER                                                */
+/* ============================================================ */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.section-label {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--red);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+}
+
+
+.section-header h2 {
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================ */
+/* USER COUNT BADGE                                              */
+/* ============================================================ */
+
+.user-count-badge {
+
+    min-width: 32px;
+
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 8px;
+
+    background: var(--red-light);
+
+    border: 1px solid #efcaca;
+
+    color: var(--red);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* ============================================================ */
+/* TABLE CONTAINER                                               */
+/* ============================================================ */
+
+.users-table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+/* ============================================================ */
+/* TABLE                                                        */
+/* ============================================================ */
+
+.users-table {
+
+    width: 100%;
+
+    min-width: 700px;
+
+    border-collapse: collapse;
+
+    font-size: 12px;
+
+}
+
+
+/* ============================================================ */
+/* TABLE HEADER                                                  */
+/* ============================================================ */
+
+.users-table thead {
+
+    background: #fafafa;
+
+}
+
+
+.users-table th {
+
+    padding: 14px 15px;
+
+    border-bottom: 2px solid var(--border);
+
+    color: #555555;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+    white-space: nowrap;
+
+}
+
+
+.users-table th:first-child {
+
+    padding-left: 22px;
+
+}
+
+
+/* ============================================================ */
+/* TABLE CELLS                                                   */
+/* ============================================================ */
+
+.users-table td {
+
+    padding: 14px 15px;
+
+    border-bottom: 1px solid var(--border-light);
+
+    color: #444444;
+
+    white-space: nowrap;
+
+}
+
+
+.users-table td:first-child {
+
+    padding-left: 22px;
+
+}
+
+
+/* ============================================================ */
+/* TABLE ROW                                                     */
+/* ============================================================ */
+
+.users-table tbody tr {
+
+    transition:
+        background 0.15s ease;
+
+}
+
+
+.users-table tbody tr:hover {
+
+    background: #fff8f8;
+
+}
+
+
+/* ============================================================ */
+/* USER ID                                                       */
+/* ============================================================ */
+
+.user-id {
+
+    color: var(--text-muted) !important;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+}
+
+
+/* ============================================================ */
+/* USERNAME                                                      */
+/* ============================================================ */
+
+.username {
+
+    color: var(--text);
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================ */
+/* LAST SEEN                                                     */
+/* ============================================================ */
+
+.last-seen {
+
+    color: var(--text-secondary) !important;
+
+    font-size: 11px;
+
+}
+
+
+/* ============================================================ */
+/* NOT AVAILABLE                                                 */
+/* ============================================================ */
+
+.not-available {
+
+    color: #aaaaaa;
+
+    font-style: italic;
+
+    font-size: 11px;
+
+}
+
+
+/* ============================================================ */
+/* ACTIVE STATUS                                                 */
+/* ============================================================ */
+
+.active-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 9px;
+
+    background: #f5faf5;
+
+    border: 1px solid #d9ead9;
+
+    color: #397239;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================ */
+/* NO ACTIVE USERS                                               */
+/* ============================================================ */
+
+.no-active-users {
+
+    padding: 65px 20px;
+
+    text-align: center;
+
+    background: #fafafa;
+
+}
+
+
+.no-users-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 14px;
+
+    border: 1px solid #dddddd;
+
+    color: #999999;
+
+    font-size: 20px;
+
+}
+
+
+.no-active-users h3 {
+
+    margin: 0 0 6px;
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+
+.no-active-users p {
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+}
+
+
+/* ============================================================ */
+/* NAVIGATION                                                    */
+/* ============================================================ */
+
+.navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+}
+
+
+.back-button,
+.users-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+
+}
+
+
+.back-button {
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    color: #555555;
+
+}
+
+
+.back-button:hover {
+
+    background: var(--red-light);
+
+    border-color: var(--red);
+
+    color: var(--red);
+
+}
+
+
+.users-button {
+
+    background: var(--red);
+
+    border: 1px solid var(--red);
+
+    color: white;
+
+}
+
+
+.users-button:hover {
+
+    background: var(--red-dark);
+
+    border-color: var(--red-dark);
+
+}
+
+
+/* ============================================================ */
+/* FOOTER                                                        */
+/* ============================================================ */
+
+.active-users-footer {
+
+    margin-top: 35px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border);
+
+    color: #999999;
+
+    font-size: 9px;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+/* ============================================================ */
+/* TABLET                                                        */
+/* ============================================================ */
+
+@media (max-width: 750px) {
+
+    .active-users-page {
+
+        padding: 25px 18px 40px;
+
+    }
+
+
+    .active-users-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+    .monitoring-label {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+}
+
+
+/* ============================================================ */
+/* MOBILE                                                        */
+/* ============================================================ */
+
+@media (max-width: 550px) {
+
+    .active-users-page {
+
+        padding: 15px 10px 30px;
+
+    }
+
+
+    .active-users-header {
+
+        padding: 18px;
+
+    }
+
+
+    .active-users-header h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .active-summary {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+
+        padding: 18px;
+
+    }
+
+
+    .summary-status {
+
+        width: 100%;
+
+        justify-content: center;
+
+        margin-left: 0;
+
+    }
+
+
+    .section-header {
+
+        padding: 17px;
+
+    }
+
+
+    .users-table {
+
+        min-width: 700px;
+
+    }
+
+
+    .navigation {
+
+        align-items: stretch;
+
+        flex-direction: column;
+
+    }
+
+
+    .back-button,
+    .users-button {
+
+        justify-content: center;
+
+    }
+
+}

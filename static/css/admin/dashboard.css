@@ -1,0 +1,1027 @@
+/* ============================================================ */
+/* ADMIN DASHBOARD                                               */
+/* DARK + RED MODERN ADMIN THEME                                */
+/* ============================================================ */
+
+
+/* ============================================================ */
+/* ROOT                                                         */
+/* ============================================================ */
+
+:root {
+
+    --red: #d32f2f;
+
+    --red-dark: #b71c1c;
+
+    --red-light: #3a2022;
+
+    --background: #202633;
+
+    --background-dark: #181d27;
+
+    --header: #171c25;
+
+    --white: #ffffff;
+
+    --card: #ffffff;
+
+    --border: #dfe2e6;
+
+    --border-light: #eceef1;
+
+    --text: #f2f4f7;
+
+    --text-secondary: #b8bec8;
+
+    --text-muted: #7f8793;
+
+    --dark-text: #252a31;
+
+    --dark-secondary: #686f78;
+
+}
+
+
+/* ============================================================ */
+/* GLOBAL                                                       */
+/* ============================================================ */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* ============================================================ */
+/* ADMIN DASHBOARD                                               */
+/* ============================================================ */
+
+.admin-dashboard {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+}
+
+
+/* ============================================================ */
+/* FULL WIDTH ADMIN HEADER                                      */
+/* ============================================================ */
+
+.admin-header {
+
+    width: 100%;
+
+    background: var(--header);
+
+    border-bottom: 3px solid var(--red);
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* ============================================================ */
+/* HEADER INNER                                                  */
+/* ============================================================ */
+
+.admin-header-inner {
+
+    width: 100%;
+
+    min-height: 76px;
+
+    padding: 0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* ============================================================ */
+/* HEADER LEFT                                                   */
+/* ============================================================ */
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+/* ============================================================ */
+/* SYSTEM INDICATOR                                              */
+/* ============================================================ */
+
+.system-indicator {
+
+    width: 6px;
+
+    height: 38px;
+
+    background: var(--red);
+
+    box-shadow:
+        0 0 8px rgba(211, 47, 47, 0.25);
+
+}
+
+
+/* ============================================================ */
+/* ADMIN BRAND                                                   */
+/* ============================================================ */
+
+.admin-brand {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+/* ============================================================ */
+/* BRAND SMALL                                                   */
+/* ============================================================ */
+
+.brand-small {
+
+    color: #ef5350;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* ============================================================ */
+/* ADMIN BRAND TITLE                                             */
+/* ============================================================ */
+
+.admin-brand h1 {
+
+    margin: 0;
+
+    color: #f5f6f8;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+/* ============================================================ */
+/* HEADER RIGHT                                                  */
+/* ============================================================ */
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+/* ============================================================ */
+/* SYSTEM STATUS                                                 */
+/* ============================================================ */
+
+.system-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    border: 1px solid #344236;
+
+    background: #202a22;
+
+    color: #9bd09b;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+}
+
+
+/* ============================================================ */
+/* STATUS DOT                                                    */
+/* ============================================================ */
+
+.status-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #66bb6a;
+
+    box-shadow:
+        0 0 5px rgba(102, 187, 106, 0.35);
+
+}
+
+
+/* ============================================================ */
+/* ADMIN LOGOUT BUTTON                                           */
+/* ============================================================ */
+
+.admin-logout {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 34px;
+
+    padding: 0 15px;
+
+    border: 1px solid #4a515d;
+
+    background: #252c38;
+
+    color: #d5d9df;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+/* ============================================================ */
+/* LOGOUT HOVER                                                  */
+/* ============================================================ */
+
+.admin-logout:hover {
+
+    background: var(--red);
+
+    border-color: var(--red);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ============================================================ */
+/* LOGOUT ACTIVE                                                 */
+/* ============================================================ */
+
+.admin-logout:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* ============================================================ */
+/* WELCOME SECTION                                               */
+/* ============================================================ */
+
+.welcome-section {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 38px 25px 25px;
+
+}
+
+
+/* ============================================================ */
+/* SECTION TAG                                                   */
+/* ============================================================ */
+
+.section-tag {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #ef5350;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* ============================================================ */
+/* WELCOME TITLE                                                 */
+/* ============================================================ */
+
+.welcome-section h2 {
+
+    margin: 0;
+
+    color: #e9edf2;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+}
+
+
+.welcome-section h2 strong {
+
+    font-weight: 600;
+
+    color: #ffffff;
+
+}
+
+
+/* ============================================================ */
+/* STATISTICS SECTION                                           */
+/* ============================================================ */
+
+.statistics-section {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 0 25px 25px;
+
+}
+
+
+/* ============================================================ */
+/* SECTION HEADING                                               */
+/* ============================================================ */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.heading-line {
+
+    width: 5px;
+
+    height: 18px;
+
+    background: var(--red);
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    color: #c7ccd4;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+/* ============================================================ */
+/* STATISTICS GRID                                               */
+/* ============================================================ */
+
+.statistics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+}
+
+
+/* ============================================================ */
+/* STAT CARD                                                     */
+/* ============================================================ */
+
+.stat-card {
+
+    padding: 20px;
+
+    background: #252c38;
+
+    border: 1px solid #394250;
+
+    border-top: 3px solid #59616e;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.18);
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+
+}
+
+
+/* ============================================================ */
+/* ACTIVE STAT CARD                                              */
+/* ============================================================ */
+
+.stat-card.active-stat {
+
+    border-top-color: var(--red);
+
+}
+
+
+/* ============================================================ */
+/* STAT CARD TOP                                                 */
+/* ============================================================ */
+
+.stat-card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* ============================================================ */
+/* STAT LABEL                                                    */
+/* ============================================================ */
+
+.stat-label {
+
+    color: #aeb5bf;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ============================================================ */
+/* STAT CODE                                                     */
+/* ============================================================ */
+
+.stat-code {
+
+    color: #68717e;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+}
+
+
+/* ============================================================ */
+/* STAT VALUE                                                    */
+/* ============================================================ */
+
+.stat-value {
+
+    margin-top: 15px;
+
+    color: #f4f6f8;
+
+    font-size: 35px;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================================ */
+/* STAT FOOTER                                                   */
+/* ============================================================ */
+
+.stat-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 15px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #39414d;
+
+    color: #7f8995;
+
+    font-size: 9px;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+/* ============================================================ */
+/* TOTAL USERS HOVER                                             */
+/* ============================================================ */
+
+.stat-card:not(.active-stat):hover {
+
+    border-top-color: #8b929d;
+
+    background: #29313e;
+
+}
+
+
+/* ============================================================ */
+/* ACTIVE USERS HOVER                                            */
+/* ============================================================ */
+
+.stat-card.active-stat:hover {
+
+    border-top-color: #ef5350;
+
+    background: #29313e;
+
+}
+
+
+/* ============================================================ */
+/* ACTIVE USER INDICATOR                                         */
+/* ============================================================ */
+
+.active-stat .stat-arrow {
+
+    color: #66bb6a;
+
+}
+
+
+/* ============================================================ */
+/* ADMINISTRATION SECTION                                        */
+/* ============================================================ */
+
+.administration-section {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 0 25px 40px;
+
+}
+
+
+/* ============================================================ */
+/* ADMIN MENU                                                    */
+/* ============================================================ */
+
+.admin-menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+/* ============================================================ */
+/* ADMIN MENU CARD                                               */
+/* ============================================================ */
+
+.admin-menu-card {
+
+    min-height: 78px;
+
+    display: grid;
+
+    grid-template-columns:
+        45px
+        45px
+        1fr
+        auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 13px 18px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    color: var(--dark-text);
+
+    text-decoration: none;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.10);
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+
+}
+
+
+/* ============================================================ */
+/* ADMIN MENU CARD HOVER                                         */
+/* ============================================================ */
+
+.admin-menu-card:hover {
+
+    border-color: #d88989;
+
+    background: #fffafa;
+
+    transform: translateX(3px);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.16);
+
+}
+
+
+/* ============================================================ */
+/* MENU NUMBER                                                   */
+/* ============================================================ */
+
+.menu-number {
+
+    color: #a1a6ad;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+}
+
+
+/* ============================================================ */
+/* MENU ICON                                                     */
+/* ============================================================ */
+
+.menu-icon {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f7f8f9;
+
+    border: 1px solid #e0e3e6;
+
+    color: var(--red);
+
+    font-size: 15px;
+
+}
+
+
+/* ============================================================ */
+/* MENU CONTENT                                                  */
+/* ============================================================ */
+
+.menu-content h3 {
+
+    margin: 0 0 4px;
+
+    color: #30353b;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+}
+
+
+.menu-content p {
+
+    margin: 0;
+
+    color: #858b92;
+
+    font-size: 10px;
+
+}
+
+
+/* ============================================================ */
+/* MENU ARROW                                                    */
+/* ============================================================ */
+
+.menu-arrow {
+
+    color: #a3a8ae;
+
+    font-size: 18px;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.admin-menu-card:hover .menu-arrow {
+
+    color: var(--red);
+
+    transform: translateX(3px);
+
+}
+
+
+/* ============================================================ */
+/* FOOTER                                                        */
+/* ============================================================ */
+
+.admin-footer {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px 25px 30px;
+
+    border-top: 1px solid #3a424f;
+
+    color: #7d8591;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ============================================================ */
+/* TABLET                                                       */
+/* ============================================================ */
+
+@media (max-width: 750px) {
+
+    .admin-header-inner {
+
+        padding: 0 20px;
+
+    }
+
+
+    .welcome-section,
+    .statistics-section,
+    .administration-section {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+
+    }
+
+
+    .statistics-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* ============================================================ */
+/* MOBILE                                                       */
+/* ============================================================ */
+
+@media (max-width: 550px) {
+
+    .admin-header-inner {
+
+        min-height: 68px;
+
+        padding: 0 15px;
+
+    }
+
+
+    .admin-brand h1 {
+
+        font-size: 17px;
+
+    }
+
+
+    /* ======================================================== */
+    /* SYSTEM STATUS                                             */
+    /* ======================================================== */
+
+    .system-status {
+
+        padding: 7px 9px;
+
+    }
+
+
+    .system-status span:last-child {
+
+        display: none;
+
+    }
+
+
+    /* ======================================================== */
+    /* LOGOUT                                                     */
+    /* ======================================================== */
+
+    .admin-logout {
+
+        min-height: 32px;
+
+        padding: 0 10px;
+
+        font-size: 8px;
+
+    }
+
+
+    .header-right {
+
+        gap: 7px;
+
+    }
+
+
+    /* ======================================================== */
+    /* WELCOME                                                    */
+    /* ======================================================== */
+
+    .welcome-section {
+
+        padding-top: 28px;
+
+    }
+
+
+    .welcome-section h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    /* ======================================================== */
+    /* ADMIN MENU                                                 */
+    /* ======================================================== */
+
+    .admin-menu-card {
+
+        grid-template-columns:
+            35px
+            40px
+            1fr
+            auto;
+
+        gap: 9px;
+
+        padding: 12px;
+
+    }
+
+
+    .menu-content p {
+
+        display: none;
+
+    }
+
+
+    .menu-arrow {
+
+        font-size: 15px;
+
+    }
+
+
+    /* ======================================================== */
+    /* FOOTER                                                     */
+    /* ======================================================== */
+
+    .admin-footer {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+
+    }
+
+}

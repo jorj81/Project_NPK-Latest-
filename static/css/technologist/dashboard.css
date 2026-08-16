@@ -1,0 +1,566 @@
+/* ============================================================
+   DESIGN TOKENS
+   All colors, spacing, and radii live here so the theme can be
+   changed in one place instead of hunting through every rule.
+   ============================================================ */
+
+   .technologist-dashboard {
+
+    --color-text: #343a40;
+    --color-text-muted: #5f6b63;
+    --color-heading: #1f3d29;
+    --color-strong: #26382b;
+
+    --color-surface: #ffffff;
+    --color-surface-alt: #fafcfb;
+    --color-surface-clock: #f8fbf8;
+
+    --color-border: #e5ebe6;
+    --color-border-soft: #edf1ee;
+    --color-border-hr: #e8ece9;
+    --color-border-clock: #dce8de;
+
+    --color-brand: #2f6b3c;
+    --color-brand-hover: #255832;
+    --color-brand-focus: #8fbf9c;
+
+    --color-clock-label: #6c7d70;
+    --color-clock-time: #244d2d;
+
+    --shadow-card: 0 4px 14px rgba(31, 61, 41, 0.05);
+    --shadow-card-strong: 0 4px 14px rgba(31, 61, 41, 0.06);
+    --shadow-hover: 0 4px 10px rgba(47, 107, 60, 0.2);
+
+    --radius-lg: 14px;
+    --radius-md: 8px;
+
+    --space-xs: 6px;
+    --space-sm: 10px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-mono: "Courier New", Courier, monospace;
+
+    --transition-fast: 0.1s ease;
+    --transition-base: 0.2s ease;
+}
+
+
+/* ============================================================
+   DASHBOARD CONTAINER
+   ============================================================ */
+
+.technologist-dashboard {
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding:
+        var(--space-xl)
+        var(--space-lg);
+
+    box-sizing: border-box;
+
+    font-family: var(--font-body);
+
+    color: var(--color-text);
+
+    background: var(--color-surface);
+
+}
+
+
+.technologist-dashboard *,
+.technologist-dashboard *::before,
+.technologist-dashboard *::after {
+
+    box-sizing: inherit;
+
+}
+
+
+/* ============================================================
+   HEADINGS & TEXT
+   ============================================================ */
+
+.technologist-dashboard h1 {
+
+    margin: 0 0 8px;
+
+    color: var(--color-heading);
+
+    font-size:
+        clamp(
+            1.5rem,
+            1.2rem + 1.2vw,
+            1.875rem
+        );
+
+    font-weight: 700;
+
+    line-height: 1.25;
+
+}
+
+
+.technologist-dashboard h2 {
+
+    margin:
+        0 0
+        var(--space-md);
+
+    color: var(--color-heading);
+
+    font-size:
+        clamp(
+            1.1875rem,
+            1.05rem + 0.5vw,
+            1.3125rem
+        );
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+}
+
+
+.technologist-dashboard p {
+
+    margin: 8px 0;
+
+    color: var(--color-text-muted);
+
+    line-height: 1.6;
+
+}
+
+
+.technologist-dashboard strong {
+
+    color: var(--color-strong);
+
+    font-weight: 600;
+
+}
+
+
+.technologist-dashboard hr {
+
+    margin: 28px 0;
+
+    border: 0;
+
+    border-top:
+        1px solid
+        var(--color-border-hr);
+
+}
+
+
+/* ============================================================
+   SHARED CARD STYLE
+
+   The technologist information section and soil data section
+   use the same card shell.
+   ============================================================ */
+
+.technologist-dashboard .technologist-info-clock,
+.technologist-dashboard .soil-data-section {
+
+    padding: var(--space-lg);
+
+    background:
+        var(--color-surface);
+
+    border:
+        1px solid
+        var(--color-border);
+
+    border-radius:
+        var(--radius-lg);
+
+    box-shadow:
+        var(--shadow-card);
+
+}
+
+
+.technologist-dashboard .technologist-info-clock {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: var(--space-lg);
+
+    box-shadow:
+        var(--shadow-card-strong);
+
+}
+
+
+.technologist-dashboard .soil-data-section {
+
+    margin-top:
+        var(--space-lg);
+
+}
+
+
+.technologist-dashboard .technologist-information {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+/* ============================================================
+   LINKS
+   ============================================================ */
+
+.technologist-dashboard a {
+
+    color:
+        var(--color-brand);
+
+    text-decoration: none;
+
+}
+
+
+.technologist-dashboard a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.technologist-dashboard button {
+
+    min-width: 220px;
+
+    padding:
+        12px 20px;
+
+    border:
+        1px solid
+        var(--color-brand);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--color-brand);
+
+    color: #ffffff;
+
+    font-family:
+        var(--font-body);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color
+        var(--transition-base),
+
+        border-color
+        var(--transition-base),
+
+        box-shadow
+        var(--transition-base),
+
+        transform
+        var(--transition-fast);
+
+}
+
+
+.technologist-dashboard button:hover {
+
+    background:
+        var(--color-brand-hover);
+
+    border-color:
+        var(--color-brand-hover);
+
+    box-shadow:
+        var(--shadow-hover);
+
+}
+
+
+.technologist-dashboard button:active {
+
+    transform:
+        translateY(1px);
+
+}
+
+
+/* ============================================================
+   KEYBOARD FOCUS
+   ============================================================ */
+
+.technologist-dashboard a:focus-visible,
+.technologist-dashboard button:focus-visible {
+
+    outline:
+        2px solid
+        var(--color-brand-focus);
+
+    outline-offset: 2px;
+
+}
+
+
+.technologist-dashboard button:disabled {
+
+    background: #a9b6ac;
+
+    border-color: #a9b6ac;
+
+    color: #f1f4f1;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+
+    transform: none;
+
+}
+
+
+/* ============================================================
+   DIGITAL CLOCK
+   ============================================================ */
+
+.technologist-dashboard .digital-clock-section {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+}
+
+
+.technologist-dashboard .digital-clock {
+
+    width: 225px;
+
+    padding:
+        16px 18px;
+
+    background:
+        var(--color-surface-clock);
+
+    border:
+        1px solid
+        var(--color-border-clock);
+
+    border-radius:
+        var(--radius-md);
+
+    text-align: center;
+
+    box-shadow:
+        inset
+        0 1px 0
+        rgba(255, 255, 255, 0.8);
+
+}
+
+
+.technologist-dashboard .digital-date {
+
+    margin-bottom:
+        var(--space-xs);
+
+    color:
+        var(--color-clock-label);
+
+    font-family:
+        var(--font-body);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+.technologist-dashboard .digital-time {
+
+    color:
+        var(--color-clock-time);
+
+    font-family:
+        var(--font-mono);
+
+    font-size:
+        clamp(
+            1.4375rem,
+            1.3rem + 0.6vw,
+            1.6875rem
+        );
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    line-height: 1.1;
+
+    font-variant-numeric:
+        tabular-nums;
+
+}
+
+
+/* ============================================================
+   SOIL DATA ITEMS
+   ============================================================ */
+
+.technologist-dashboard .soil-data-section > div {
+
+    padding:
+        14px
+        var(--space-md);
+
+    margin-bottom:
+        var(--space-sm);
+
+    background:
+        var(--color-surface-alt);
+
+    border:
+        1px solid
+        var(--color-border-soft);
+
+    border-radius:
+        var(--radius-md);
+
+}
+
+
+.technologist-dashboard .soil-data-section > div:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+/* ============================================================
+   MOTION PREFERENCES
+   Respect users who've asked their OS for reduced motion.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .technologist-dashboard button {
+
+        transition: none;
+
+    }
+
+
+    .technologist-dashboard button:active {
+
+        transform: none;
+
+    }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .technologist-dashboard {
+
+        padding:
+            22px 15px;
+
+    }
+
+
+    .technologist-dashboard .technologist-info-clock {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 20px;
+
+        padding: 20px;
+
+    }
+
+
+    .technologist-dashboard .digital-clock-section {
+
+        justify-content: center;
+
+    }
+
+
+    .technologist-dashboard .digital-clock {
+
+        width: 100%;
+
+        max-width: 225px;
+
+        padding:
+            14px 12px;
+
+    }
+
+
+    .technologist-dashboard button {
+
+        width: 100%;
+
+        min-width: 0;
+
+    }
+
+
+    .technologist-dashboard .soil-data-section {
+
+        padding: 20px;
+
+    }
+
+
+    .technologist-dashboard .digital-date {
+
+        font-size: 10px;
+
+        letter-spacing: 0.8px;
+
+    }
+
+}

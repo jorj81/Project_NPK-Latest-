@@ -1,0 +1,75 @@
+CREATE TABLE esp32_device (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    esp32_code VARCHAR(100) NOT NULL UNIQUE,
+
+    owner_id INT NOT NULL,
+
+    barangay_id INT NOT NULL,
+
+    location VARCHAR(255) NOT NULL,
+
+    ip_address VARCHAR(45) NULL,
+
+    FOREIGN KEY (owner_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (barangay_id)
+        REFERENCES barangays(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+
+
+
+CREATE TABLE esp32_current_reading (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    esp32_device_id INT NOT NULL UNIQUE,
+
+    soil_moisture DECIMAL(10,2) NULL,
+
+    nitrogen DECIMAL(10,2) NULL,
+
+    phosphorus DECIMAL(10,2) NULL,
+
+    potassium DECIMAL(10,2) NULL,
+
+    recorded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (esp32_device_id)
+        REFERENCES esp32_device(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE esp32_sensor_history (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+    esp32_device_id INT NOT NULL,
+
+    soil_moisture DECIMAL(10,2) NULL,
+
+    nitrogen DECIMAL(10,2) NULL,
+
+    phosphorus DECIMAL(10,2) NULL,
+
+    potassium DECIMAL(10,2) NULL,
+
+    recorded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (esp32_device_id)
+        REFERENCES esp32_device(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    INDEX idx_esp32_history (
+        esp32_device_id,
+        recorded_at
+    )
+);

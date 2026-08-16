@@ -1,0 +1,732 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Register ESP32 Device
+{% endblock %}
+
+
+<!-- ============================================================ -->
+<!-- PAGE-SPECIFIC CSS                                            -->
+<!-- ============================================================ -->
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/farmer/create_device.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="register-device-page">
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE TITLE                                               -->
+    <!-- ======================================================== -->
+
+    <h1>
+        Register ESP32 Device
+    </h1>
+
+
+    <p class="page-description">
+        Register an ESP32 device and specify its location.
+    </p>
+
+
+    <!-- ======================================================== -->
+    <!-- FLASH MESSAGES                                           -->
+    <!-- ======================================================== -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            <div class="flash-messages">
+
+                {% for category, message in messages %}
+
+                    <div class="flash-message {{ category }}">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ======================================================== -->
+    <!-- REGISTRATION FORM                                        -->
+    <!-- ======================================================== -->
+
+    <form
+        method="POST"
+        action="{{ url_for('farmer_dashboard.create_device') }}"
+        class="register-device-form"
+    >
+
+
+        <!-- ==================================================== -->
+        <!-- ESP32 INFORMATION                                    -->
+        <!-- ==================================================== -->
+
+        <div class="form-section">
+
+            <h2>
+                ESP32 Device Information
+            </h2>
+
+
+            <!-- ================================================= -->
+            <!-- ESP32 CODE                                         -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="esp32_code">
+                    ESP32 Code
+                </label>
+
+
+                <input
+                    type="text"
+                    id="esp32_code"
+                    name="esp32_code"
+                    placeholder="ESP32-001"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- IP ADDRESS                                         -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="ip_address">
+                    IP Address
+                </label>
+
+
+                <input
+                    type="text"
+                    id="ip_address"
+                    name="ip_address"
+                    placeholder="192.168.1.100"
+                >
+
+
+                <small>
+                    Leave empty if the IP address will be detected
+                    automatically.
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================== -->
+        <!-- DEVICE LOCATION                                      -->
+        <!-- ==================================================== -->
+
+        <div class="form-section">
+
+            <h2>
+                Device Location
+            </h2>
+
+
+            <!-- ================================================= -->
+            <!-- COUNTRY                                           -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="country">
+                    Country
+                </label>
+
+
+                <select
+                    id="country"
+                    disabled
+                >
+
+                    <option>
+                        Philippines
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- REGION                                            -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="region">
+                    Region
+                </label>
+
+
+                <select
+                    id="region"
+                    required
+                >
+
+                    <option value="">
+                        Select Region
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- PROVINCE                                          -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="province">
+                    Province
+                </label>
+
+
+                <select
+                    id="province"
+                    required
+                    disabled
+                >
+
+                    <option value="">
+                        Select Province
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- CITY / MUNICIPALITY                               -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="city">
+                    City / Municipality
+                </label>
+
+
+                <select
+                    id="city"
+                    required
+                    disabled
+                >
+
+                    <option value="">
+                        Select City / Municipality
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- BARANGAY                                          -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="barangay">
+                    Barangay
+                </label>
+
+
+                <select
+                    id="barangay"
+                    name="barangay_id"
+                    required
+                    disabled
+                >
+
+                    <option value="">
+                        Select Barangay
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- SPECIFIC LOCATION                                 -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="location">
+                    Specific Location
+                </label>
+
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Rice Field - Area A"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================== -->
+        <!-- SUBMIT                                                -->
+        <!-- ==================================================== -->
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                id="submitButton"
+                class="register-button"
+            >
+                Register ESP32 Device
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+    <!-- ======================================================== -->
+    <!-- BACK TO FARMER DASHBOARD                                 -->
+    <!-- ======================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('farmer_dashboard.dashboard_page') }}"
+            class="farmer-button secondary-button"
+        >
+            ← Back to Farmer Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ============================================================ -->
+<!-- LOCATION JAVASCRIPT                                          -->
+<!-- ============================================================ -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        // -------------------------------------------------
+        // Get HTML elements
+        // -------------------------------------------------
+
+        const regionSelect =
+            document.getElementById("region");
+
+        const provinceSelect =
+            document.getElementById("province");
+
+        const citySelect =
+            document.getElementById("city");
+
+        const barangaySelect =
+            document.getElementById("barangay");
+
+
+        // -------------------------------------------------
+        // Helper function
+        // -------------------------------------------------
+
+        function clearSelect(
+            selectElement,
+            defaultText
+        ) {
+
+            selectElement.innerHTML = "";
+
+            const option =
+                document.createElement("option");
+
+            option.value = "";
+
+            option.textContent =
+                defaultText;
+
+            selectElement.appendChild(
+                option
+            );
+
+        }
+
+
+        // -------------------------------------------------
+        // Load Regions
+        // -------------------------------------------------
+
+        fetch(
+            "{{ url_for('auth.get_regions') }}"
+        )
+
+        .then(
+            response => response.json()
+        )
+
+        .then(
+            regions => {
+
+                clearSelect(
+                    regionSelect,
+                    "Select Region"
+                );
+
+
+                regions.forEach(
+                    region => {
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+                        option.value =
+                            region.id;
+
+                        option.textContent =
+                            region.region_name;
+
+                        regionSelect.appendChild(
+                            option
+                        );
+
+                    }
+                );
+
+            }
+        )
+
+        .catch(
+            error => {
+
+                console.error(
+                    "Error loading regions:",
+                    error
+                );
+
+            }
+        );
+
+
+        // -------------------------------------------------
+        // Region changed
+        // -------------------------------------------------
+
+        regionSelect.addEventListener(
+            "change",
+            function () {
+
+                const regionId =
+                    this.value;
+
+
+                clearSelect(
+                    provinceSelect,
+                    "Select Province"
+                );
+
+                clearSelect(
+                    citySelect,
+                    "Select City/Municipality"
+                );
+
+                clearSelect(
+                    barangaySelect,
+                    "Select Barangay"
+                );
+
+
+                provinceSelect.disabled =
+                    true;
+
+                citySelect.disabled =
+                    true;
+
+                barangaySelect.disabled =
+                    true;
+
+
+                if (!regionId) {
+                    return;
+                }
+
+
+                fetch(
+                    `/provinces/${regionId}`
+                )
+
+                .then(
+                    response => response.json()
+                )
+
+                .then(
+                    provinces => {
+
+                        provinces.forEach(
+                            province => {
+
+                                const option =
+                                    document.createElement(
+                                        "option"
+                                    );
+
+                                option.value =
+                                    province.id;
+
+                                option.textContent =
+                                    province.province_name;
+
+                                provinceSelect.appendChild(
+                                    option
+                                );
+
+                            }
+                        );
+
+
+                        provinceSelect.disabled =
+                            false;
+
+                    }
+                )
+
+                .catch(
+                    error => {
+
+                        console.error(
+                            "Error loading provinces:",
+                            error
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        // -------------------------------------------------
+        // Province changed
+        // -------------------------------------------------
+
+        provinceSelect.addEventListener(
+            "change",
+            function () {
+
+                const provinceId =
+                    this.value;
+
+
+                clearSelect(
+                    citySelect,
+                    "Select City/Municipality"
+                );
+
+                clearSelect(
+                    barangaySelect,
+                    "Select Barangay"
+                );
+
+
+                citySelect.disabled =
+                    true;
+
+                barangaySelect.disabled =
+                    true;
+
+
+                if (!provinceId) {
+                    return;
+                }
+
+
+                fetch(
+                    `/cities/${provinceId}`
+                )
+
+                .then(
+                    response => response.json()
+                )
+
+                .then(
+                    cities => {
+
+                        cities.forEach(
+                            city => {
+
+                                const option =
+                                    document.createElement(
+                                        "option"
+                                    );
+
+                                option.value =
+                                    city.id;
+
+                                option.textContent =
+                                    city.city_name
+                                    + " ("
+                                    + city.type
+                                    + ")";
+
+                                citySelect.appendChild(
+                                    option
+                                );
+
+                            }
+                        );
+
+
+                        citySelect.disabled =
+                            false;
+
+                    }
+                )
+
+                .catch(
+                    error => {
+
+                        console.error(
+                            "Error loading cities:",
+                            error
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        // -------------------------------------------------
+        // City changed
+        // -------------------------------------------------
+
+        citySelect.addEventListener(
+            "change",
+            function () {
+
+                const cityId =
+                    this.value;
+
+
+                clearSelect(
+                    barangaySelect,
+                    "Select Barangay"
+                );
+
+
+                barangaySelect.disabled =
+                    true;
+
+
+                if (!cityId) {
+                    return;
+                }
+
+
+                fetch(
+                    `/barangays/${cityId}`
+                )
+
+                .then(
+                    response => response.json()
+                )
+
+                .then(
+                    barangays => {
+
+                        barangays.forEach(
+                            barangay => {
+
+                                const option =
+                                    document.createElement(
+                                        "option"
+                                    );
+
+                                option.value =
+                                    barangay.id;
+
+                                option.textContent =
+                                    barangay.barangay_name;
+
+                                barangaySelect.appendChild(
+                                    option
+                                );
+
+                            }
+                        );
+
+
+                        barangaySelect.disabled =
+                            false;
+
+                    }
+                )
+
+                .catch(
+                    error => {
+
+                        console.error(
+                            "Error loading barangays:",
+                            error
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+);
+
+</script>
+
+
+{% endblock %}

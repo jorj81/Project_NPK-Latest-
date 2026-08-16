@@ -1,0 +1,327 @@
+/* ============================================================
+   BASE / GLOBAL STYLES
+   ============================================================ */
+
+
+/* ============================================================
+   BODY
+   ============================================================ */
+
+   body {
+
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    background: #ffffff;
+    color: #1e1e1e;
+
+}
+
+
+/* ============================================================
+   SITE HEADER
+   ============================================================ */
+
+.site-header {
+
+    width: 100%;
+
+    background: #214523;
+
+    border-bottom: 1px solid #061506;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/* ============================================================
+   HEADER CONTENT
+   ============================================================ */
+
+.header-content {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 20px 10px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   PROJECT TITLE
+   ============================================================ */
+
+.site-header h1 {
+
+    margin: 0;
+
+    text-align: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 25px;
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.site-navigation {
+
+    width: 100%;
+
+    background: #f7f9f7;
+
+    border-bottom: 1px solid #dfe5e0;
+
+}
+
+
+/* ============================================================
+   NAVIGATION CONTENT
+   ============================================================ */
+
+.navigation-content {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 12px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   NAVIGATION BUTTONS
+   ============================================================ */
+
+.nav-button {
+
+    display: inline-block;
+
+    padding: 9px 16px;
+
+    border-radius: 6px;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
+
+.back-button {
+
+    margin-right: auto;
+
+    background: #ffffff;
+
+    color: #2e7d32;
+
+    border: 1px solid #2e7d32;
+
+}
+
+
+.back-button:hover {
+
+    background: #2e7d32;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.12);
+
+}
+
+
+/* ============================================================
+   LOGOUT BUTTON
+   ============================================================ */
+
+.logout-button {
+
+    margin-left: auto;
+
+    background: #2e7d32;
+
+    color: #ffffff;
+
+    border: 1px solid #041004;
+
+}
+
+
+.logout-button:hover {
+
+    background: #1b5e20;
+
+    border-color: #1b5e20;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.15);
+
+}
+
+
+/* ============================================================
+   NAVIGATION ACTIVE STATE
+   ============================================================ */
+
+.nav-button:active {
+
+    transform: translateY(0);
+
+    box-shadow: none;
+
+}
+
+
+/* ============================================================
+   MAIN CONTENT CONTAINER
+   ============================================================ */
+
+.main-content {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 35px 20px 50px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+
+    /* --------------------------------------------------------
+       HEADER
+       -------------------------------------------------------- */
+
+    .header-content {
+
+        padding: 18px 10px;
+
+    }
+
+
+    .site-header h1 {
+
+        font-size: 21px;
+
+        letter-spacing: 1.5px;
+
+        line-height: 1.2;
+
+    }
+
+
+    /* --------------------------------------------------------
+       NAVIGATION
+       -------------------------------------------------------- */
+
+    .navigation-content {
+
+        padding: 10px 12px;
+
+    }
+
+
+    .nav-button {
+
+        padding: 8px 12px;
+
+        font-size: 13px;
+
+    }
+
+
+    /* --------------------------------------------------------
+       MAIN CONTENT
+       -------------------------------------------------------- */
+
+    .main-content {
+
+        padding: 25px 15px 40px;
+
+    }
+
+}

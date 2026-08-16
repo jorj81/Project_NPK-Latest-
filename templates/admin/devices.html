@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Devices</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin/devices.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="devices-page">
+
+
+    <!-- ======================================================== -->
+    <!-- HEADER                                                   -->
+    <!-- ======================================================== -->
+
+    <header class="devices-header">
+
+        <div class="header-title">
+
+            <div class="header-accent"></div>
+
+            <div>
+
+                <span class="page-label">
+                    ADMINISTRATION
+                </span>
+
+                <h1>
+                    ESP32 Devices
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="device-count">
+
+            <span class="count-label">
+                REGISTERED DEVICES
+            </span>
+
+            <span class="count-value">
+                {{ devices|length if devices else 0 }}
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================================== -->
+    <!-- DEVICE TABLE                                             -->
+    <!-- ======================================================== -->
+
+    <section class="devices-card">
+
+
+        <div class="table-header">
+
+            <div>
+
+                <h2>
+                    Device Registry
+                </h2>
+
+                <p>
+                    Registered ESP32 devices and their assigned information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% if devices %}
+
+
+        <div class="table-container">
+
+            <table class="devices-table">
+
+
+                <!-- ================================================= -->
+                <!-- TABLE HEADER                                      -->
+                <!-- ================================================= -->
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            ESP32 Code
+                        </th>
+
+                        <th>
+                            Owner ID
+                        </th>
+
+                        <th>
+                            Owner Name
+                        </th>
+
+                        <th>
+                            Owner Role
+                        </th>
+
+                        <th>
+                            Barangay ID
+                        </th>
+
+                        <th>
+                            Barangay Name
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            IP Address
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <!-- ================================================= -->
+                <!-- TABLE BODY                                        -->
+                <!-- ================================================= -->
+
+                <tbody>
+
+                    {% for device in devices %}
+
+                    <tr>
+
+
+                        <!-- ========================================= -->
+                        <!-- DEVICE ID                                  -->
+                        <!-- ========================================= -->
+
+                        <td class="id-cell">
+
+                            {{ device.device_id }}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- ESP32 CODE                                 -->
+                        <!-- ========================================= -->
+
+                        <td class="device-code-cell">
+
+                            <strong>
+                                {{ device.esp32_code }}
+                            </strong>
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- OWNER ID                                   -->
+                        <!-- ========================================= -->
+
+                        <td class="id-cell">
+
+                            {{ device.owner_id }}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- OWNER NAME                                 -->
+                        <!-- ========================================= -->
+
+                        <td>
+
+                            {% if device.owner_name %}
+
+                                {{ device.owner_name }}
+
+                            {% else %}
+
+                                <span class="empty-value">
+                                    N/A
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- OWNER ROLE                                 -->
+                        <!-- ========================================= -->
+
+                        <td>
+
+                            {% if device.owner_role %}
+
+                                <span class="role-badge">
+                                    {{ device.owner_role }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="empty-value">
+                                    N/A
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- BARANGAY ID                                -->
+                        <!-- ========================================= -->
+
+                        <td class="id-cell">
+
+                            {{ device.barangay_id }}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- BARANGAY NAME                              -->
+                        <!-- ========================================= -->
+
+                        <td>
+
+                            {% if device.barangay_name %}
+
+                                {{ device.barangay_name }}
+
+                            {% else %}
+
+                                <span class="empty-value">
+                                    N/A
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- LOCATION                                   -->
+                        <!-- ========================================= -->
+
+                        <td class="location-cell">
+
+                            {{ device.location }}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- IP ADDRESS                                 -->
+                        <!-- ========================================= -->
+
+                        <td>
+
+                            {% if device.ip_address %}
+
+                                <span class="ip-address">
+                                    {{ device.ip_address }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="not-assigned">
+                                    Not assigned
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ========================================= -->
+                        <!-- ACTION                                     -->
+                        <!-- ========================================= -->
+
+                        <td>
+
+                            <form
+                                action="{{ url_for(
+                                    'admin_dashboard.delete_device_route',
+                                    device_id=device.device_id
+                                ) }}"
+                                method="POST"
+                                onsubmit="return confirm(
+                                    'Are you sure you want to delete ESP32 {{ device.esp32_code }}? This may also delete its historical sensor data.'
+                                );"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-button"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ======================================================== -->
+        <!-- NO DEVICES                                               -->
+        <!-- ======================================================== -->
+
+        <div class="no-devices">
+
+            <div class="no-device-icon">
+                +
+            </div>
+
+            <h3>
+                No ESP32 Devices
+            </h3>
+
+            <p>
+                No ESP32 devices are currently registered in the system.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- BACK TO DASHBOARD                                        -->
+    <!-- ======================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('admin_dashboard.dashboard_page') }}"
+            class="back-button"
+        >
+
+            <span>
+                ←
+            </span>
+
+            Back to Admin Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- FOOTER                                                   -->
+    <!-- ======================================================== -->
+
+    <footer class="devices-footer">
+
+        HRA // ADMINISTRATION // ESP32 DEVICE MANAGEMENT
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

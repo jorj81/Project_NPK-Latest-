@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Users</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin/admin_users.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="users-page">
+
+
+    <!-- ======================================================== -->
+    <!-- HEADER                                                   -->
+    <!-- ======================================================== -->
+
+    <header class="users-header">
+
+        <div class="header-title">
+
+            <div class="header-accent"></div>
+
+            <div>
+
+                <span class="page-label">
+                    ADMINISTRATION
+                </span>
+
+                <h1>
+                    Users
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="user-count">
+
+            <span class="count-label">
+                TOTAL USERS
+            </span>
+
+            <span class="count-value">
+                {{ users|length }}
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================================== -->
+    <!-- USER TABLE                                               -->
+    <!-- ======================================================== -->
+
+    <section class="users-card">
+
+
+        <div class="table-header">
+
+            <div>
+
+                <h2>
+                    User Accounts
+                </h2>
+
+                <p>
+                    Registered users and account information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table class="users-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Username</th>
+
+                        <th>Contact Number</th>
+
+                        <th>Role</th>
+
+                        <th>Barangay</th>
+
+                        <th>City / Municipality</th>
+
+                        <th>Province</th>
+
+                        <th>Region</th>
+
+                        <th>Country</th>
+
+                        <th>Last Activity</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if users %}
+
+                        {% for user in users %}
+
+                        <tr>
+
+                            <td class="id-cell">
+                                {{ user.id }}
+                            </td>
+
+
+                            <td class="username-cell">
+
+                                <strong>
+                                    {{ user.username }}
+                                </strong>
+
+                            </td>
+
+
+                            <td>
+                                {{ user.contact_number }}
+                            </td>
+
+
+                            <td>
+
+                                {% if user.role_name %}
+
+                                    <span class="role-badge">
+                                        {{ user.role_name }}
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="empty-value">
+                                        No role
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if user.barangay_name %}
+                                    {{ user.barangay_name }}
+                                {% else %}
+                                    <span class="empty-value">
+                                        No barangay
+                                    </span>
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if user.city_name %}
+
+                                    {{ user.city_name }}
+
+                                {% else %}
+
+                                    <span class="empty-value">
+                                        No city/municipality
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if user.province_name %}
+
+                                    {{ user.province_name }}
+
+                                {% else %}
+
+                                    <span class="empty-value">
+                                        No province
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if user.region_name %}
+
+                                    {{ user.region_name }}
+
+                                {% else %}
+
+                                    <span class="empty-value">
+                                        No region
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if user.country_name %}
+
+                                    {{ user.country_name }}
+
+                                {% else %}
+
+                                    <span class="empty-value">
+                                        No country
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td class="activity-cell">
+
+                                {% if user.last_activity %}
+
+                                    {{ user.last_activity }}
+
+                                {% else %}
+
+                                    <span class="never-active">
+                                        Never
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                <form
+                                    action="{{ url_for('admin_dashboard.delete_user_route', user_id=user.id) }}"
+                                    method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this user?');"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="delete-button"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+
+                    {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="11"
+                                class="no-users"
+                            >
+
+                                No users found.
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- BACK BUTTON                                              -->
+    <!-- ======================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('admin_dashboard.dashboard_page') }}"
+            class="back-button"
+        >
+
+            <span>
+                ←
+            </span>
+
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- FOOTER                                                   -->
+    <!-- ======================================================== -->
+
+    <footer class="users-footer">
+
+        ADMINISTRATION // USER MANAGEMENT
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

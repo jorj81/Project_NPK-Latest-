@@ -1,0 +1,18 @@
+for creating  table:
+
+CREATE TABLE regions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    country_id INT NOT NULL,
+    region_name VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (country_id)
+    REFERENCES countries(id)
+);
+
+
+for inserting content:
+
+INSERT INTO regions
+(country_id, region_name)
+VALUES
+(1, 'Central Luzon');

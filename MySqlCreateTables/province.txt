@@ -1,0 +1,18 @@
+for creating table:
+
+CREATE TABLE provinces (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    region_id INT NOT NULL,
+    province_name VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (region_id)
+    REFERENCES regions(id)
+);
+
+
+for inserting inside province:
+
+INSERT INTO provinces
+(region_id, province_name)
+VALUES
+(1, 'Nueva Ecija');

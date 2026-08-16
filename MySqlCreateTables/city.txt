@@ -1,0 +1,18 @@
+for creating table:
+
+CREATE TABLE cities_municipalities (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    province_id INT NOT NULL,
+    city_name VARCHAR(100) NOT NULL,
+    type ENUM('City','Municipality') NOT NULL,
+
+    FOREIGN KEY (province_id)
+    REFERENCES provinces(id)
+);
+
+for inserting content:
+
+INSERT INTO cities_municipalities
+(province_id, city_name, type)
+VALUES
+(1, 'Cabanatuan City', 'City');

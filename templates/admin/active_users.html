@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Active Users
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin/active_users.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="active-users-page">
+
+
+    <!-- ======================================================== -->
+    <!-- HEADER                                                   -->
+    <!-- ======================================================== -->
+
+    <header class="active-users-header">
+
+
+        <div class="header-title">
+
+
+            <div class="header-accent"></div>
+
+
+            <div>
+
+                <span class="page-label">
+                    ADMINISTRATION
+                </span>
+
+                <h1>
+                    Active Users
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="monitoring-label">
+
+            LIVE MONITORING
+
+        </div>
+
+
+    </header>
+
+
+    <!-- ======================================================== -->
+    <!-- DESCRIPTION                                              -->
+    <!-- ======================================================== -->
+
+    <div class="page-description">
+
+        <span class="description-icon">
+            ●
+        </span>
+
+        <p>
+            Users who have been active within the last 5 minutes.
+        </p>
+
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- ACTIVE USER SUMMARY                                      -->
+    <!-- ======================================================== -->
+
+    <section class="active-summary">
+
+
+        <div class="summary-icon">
+
+            ●
+
+        </div>
+
+
+        <div class="summary-information">
+
+            <span class="summary-label">
+                CURRENTLY ACTIVE USERS
+            </span>
+
+            <strong class="summary-count">
+                {{ users|length }}
+            </strong>
+
+        </div>
+
+
+        <div class="summary-status">
+
+            <span class="status-dot"></span>
+
+            <span>
+                MONITORING
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- USER TABLE                                               -->
+    <!-- ======================================================== -->
+
+    <section class="users-card">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <span class="section-label">
+                    USER ACTIVITY
+                </span>
+
+                <h2>
+                    Currently Active
+                </h2>
+
+            </div>
+
+
+            <div class="user-count-badge">
+
+                {{ users|length }}
+
+            </div>
+
+
+        </div>
+
+
+        {% if users %}
+
+
+        <div class="users-table-container">
+
+
+            <table class="users-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Username
+                        </th>
+
+                        <th>
+                            Contact Number
+                        </th>
+
+                        <th>
+                            Last Seen
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for user in users %}
+
+
+                    <tr>
+
+
+                        <!-- ===================================== -->
+                        <!-- USER ID                               -->
+                        <!-- ===================================== -->
+
+                        <td class="user-id">
+
+                            {{ user.id }}
+
+                        </td>
+
+
+                        <!-- ===================================== -->
+                        <!-- USERNAME                              -->
+                        <!-- ===================================== -->
+
+                        <td>
+
+                            <span class="username">
+
+                                {{ user.username }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- ===================================== -->
+                        <!-- CONTACT NUMBER                        -->
+                        <!-- ===================================== -->
+
+                        <td>
+
+                            {% if user.contact_number %}
+
+                                {{ user.contact_number }}
+
+                            {% else %}
+
+                                <span class="not-available">
+                                    Not available
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ===================================== -->
+                        <!-- LAST SEEN                             -->
+                        <!-- ===================================== -->
+
+                        <td class="last-seen">
+
+                            {% if user.last_seen %}
+
+                                {{ user.last_seen }}
+
+                            {% else %}
+
+                                <span class="not-available">
+                                    Never
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- ===================================== -->
+                        <!-- STATUS                                -->
+                        <!-- ===================================== -->
+
+                        <td>
+
+                            <span class="active-status">
+
+                                <span class="status-dot"></span>
+
+                                Active
+
+                            </span>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ==================================================== -->
+        <!-- NO ACTIVE USERS                                      -->
+        <!-- ==================================================== -->
+
+        <div class="no-active-users">
+
+
+            <div class="no-users-icon">
+
+                —
+
+            </div>
+
+
+            <h3>
+                No Active Users
+            </h3>
+
+
+            <p>
+                No users are currently active.
+            </p>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- NAVIGATION                                               -->
+    <!-- ======================================================== -->
+
+    <div class="navigation">
+
+
+        <a
+            href="{{ url_for('admin_dashboard.dashboard_page') }}"
+            class="back-button"
+        >
+
+            <span>
+                ←
+            </span>
+
+            Back to Admin Dashboard
+
+        </a>
+
+
+        <a
+            href="{{ url_for('admin_dashboard.users_data') }}"
+            class="users-button"
+        >
+
+            View All Users
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- FOOTER                                                   -->
+    <!-- ======================================================== -->
+
+    <footer class="active-users-footer">
+
+        ADMINISTRATION // USER ACTIVITY MONITOR
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

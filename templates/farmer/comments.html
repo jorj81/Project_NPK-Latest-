@@ -1,0 +1,360 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Comments
+{% endblock %}
+
+
+<!-- ============================================================ -->
+<!-- PAGE-SPECIFIC CSS                                            -->
+<!-- ============================================================ -->
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/farmer/comments.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="farmer-comments-page">
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE HEADER                                              -->
+    <!-- ======================================================== -->
+
+    <div class="comments-header">
+
+        <h1>
+            Comments
+        </h1>
+
+        <p>
+            You can add, edit, or delete your comments.
+        </p>
+
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- FLASH MESSAGES                                           -->
+    <!-- ======================================================== -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            <div class="flash-messages">
+
+                {% for category, message in messages %}
+
+                    <div class="flash-message {{ category }}">
+
+                        <strong>
+                            {{ message }}
+                        </strong>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ======================================================== -->
+    <!-- DATABASE ERROR                                           -->
+    <!-- ======================================================== -->
+
+    {% if error %}
+
+        <div class="flash-message error">
+
+            <strong>
+                Error:
+            </strong>
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- ======================================================== -->
+    <!-- ADD COMMENT SECTION                                      -->
+    <!-- ======================================================== -->
+
+    <section class="add-comment-section">
+
+        <h2>
+            Add Comment
+        </h2>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('farmer_dashboard.comment_page') }}"
+            class="comment-form"
+        >
+
+
+            <!-- ================================================= -->
+            <!-- COMMENT INPUT                                     -->
+            <!-- ================================================= -->
+
+            <div class="form-group">
+
+                <label for="comment">
+                    Comment
+                </label>
+
+
+                <textarea
+                    id="comment"
+                    name="comment"
+                    rows="5"
+                    placeholder="Enter your comment..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- SUBMIT BUTTON                                     -->
+            <!-- ================================================= -->
+
+            <button
+                type="submit"
+                class="add-comment-button"
+            >
+                Add Comment
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- MY COMMENTS                                              -->
+    <!-- ======================================================== -->
+
+    <section class="my-comments-section">
+
+        <h2>
+            My Comments
+        </h2>
+
+
+        {% if comments %}
+
+
+            <div class="comments-list">
+
+
+                {% for comment in comments %}
+
+
+                    <!-- ======================================== -->
+                    <!-- COMMENT CARD                             -->
+                    <!-- ======================================== -->
+
+                    <article class="comment-card">
+
+
+                        <!-- ==================================== -->
+                        <!-- COMMENT INFORMATION                  -->
+                        <!-- ==================================== -->
+
+                        <div class="comment-information">
+
+
+                            <div class="comment-meta">
+
+                                <span>
+                                    <strong>
+                                        Comment ID:
+                                    </strong>
+
+                                    {{ comment.id }}
+                                </span>
+
+
+                                <span>
+                                    <strong>
+                                        Username:
+                                    </strong>
+
+                                    {{ comment.username }}
+                                </span>
+
+
+                                {% if comment.created_at %}
+
+                                    <span>
+                                        <strong>
+                                            Date:
+                                        </strong>
+
+                                        {{ comment.created_at }}
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- ================================= -->
+                            <!-- CURRENT COMMENT                   -->
+                            <!-- ================================= -->
+
+                            <div class="current-comment">
+
+                                <h3>
+                                    Comment
+                                </h3>
+
+                                <p>
+                                    {{ comment.comment }}
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- ==================================== -->
+                        <!-- EDIT COMMENT                         -->
+                        <!-- ==================================== -->
+
+                        <div class="edit-comment-section">
+
+                            <h3>
+                                Edit Comment
+                            </h3>
+
+
+                            <form
+                                method="POST"
+                                action="{{ url_for(
+                                    'farmer_dashboard.edit_comment_page',
+                                    comment_id=comment.id
+                                ) }}"
+                                class="edit-comment-form"
+                            >
+
+                                <textarea
+                                    name="comment"
+                                    rows="5"
+                                    required
+                                >{{ comment.comment }}</textarea>
+
+
+                                <button
+                                    type="submit"
+                                    class="save-comment-button"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+                        <!-- ==================================== -->
+                        <!-- DELETE COMMENT                      -->
+                        <!-- ==================================== -->
+
+                        <div class="delete-comment-section">
+
+                            <form
+                                method="POST"
+                                action="{{ url_for(
+                                    'farmer_dashboard.delete_comment_page',
+                                    comment_id=comment.id
+                                ) }}"
+                                onsubmit="return confirm(
+                                    'Are you sure you want to delete this comment?'
+                                );"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-comment-button"
+                                >
+                                    Delete Comment
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+                    </article>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- ================================================ -->
+            <!-- NO COMMENTS                                      -->
+            <!-- ================================================ -->
+
+            <div class="no-comments">
+
+                <h3>
+                    No Comments
+                </h3>
+
+                <p>
+                    You have not posted any comments yet.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- BACK TO DASHBOARD                                        -->
+    <!-- ======================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('farmer_dashboard.dashboard_page') }}"
+            class="back-dashboard-button"
+        >
+            ← Back to Farmer Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

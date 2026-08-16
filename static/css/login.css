@@ -1,0 +1,303 @@
+body {
+    margin: 0;
+    padding: 40px 20px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #ffffff;
+    color: #1e1e1e;
+}
+
+
+/* ============================================================ */
+/* MAIN WRAPPER                                                  */
+/* ============================================================ */
+
+.wrapper {
+    width: 100%;
+    max-width: 450px;
+
+    margin: 60px auto 0;
+}
+
+
+/* ============================================================ */
+/* LOGIN CARD                                                    */
+/* ============================================================ */
+
+.card {
+    background: #ffffff;
+
+    padding: 35px 35px 30px;
+
+    border: 1px solid #dfe5e0;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================ */
+/* LOGIN TITLE                                                   */
+/* ============================================================ */
+
+.card h2 {
+    margin: 0 0 30px;
+
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: #07760d;
+}
+
+
+/* ============================================================ */
+/* FORM                                                          */
+/* ============================================================ */
+
+.login-form {
+    width: 100%;
+}
+
+
+/* ============================================================ */
+/* FORM GROUP                                                    */
+/* ============================================================ */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+/* ============================================================ */
+/* LABEL                                                         */
+/* ============================================================ */
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    color: #333333;
+}
+
+
+/* ============================================================ */
+/* INPUT                                                         */
+/* ============================================================ */
+
+.form-group input {
+    box-sizing: border-box;
+
+    width: 100%;
+
+    padding: 11px 12px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+
+    color: #1e1e1e;
+
+    background: #ffffff;
+
+    border: 1px solid #cfd8d1;
+    border-radius: 6px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* ============================================================ */
+/* INPUT FOCUS                                                   */
+/* ============================================================ */
+
+.form-group input:focus {
+    border-color: #2e7d32;
+
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+}
+
+
+/* ============================================================ */
+/* LOGIN BUTTON                                                  */
+/* ============================================================ */
+
+.primary-btn {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #2e7d32;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.primary-btn:hover {
+    background: #1b5e20;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ============================================================ */
+/* CREATE ACCOUNT                                                */
+/* ============================================================ */
+
+.card > p {
+    margin: 25px 0 0;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    color: #555555;
+}
+
+
+.card > p a {
+    color: #2e7d32;
+
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+
+.card > p a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================================ */
+/* FLASH MESSAGES                                                */
+/* ============================================================ */
+
+.messages {
+    margin-bottom: 20px;
+}
+
+
+/* ============================================================ */
+/* FLASH MESSAGE                                                 */
+/* ============================================================ */
+
+.flash {
+    padding: 12px 15px;
+
+    margin-bottom: 10px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* ============================================================ */
+/* SUCCESS MESSAGE                                               */
+/* ============================================================ */
+
+.flash.success {
+    background: #e8f5e9;
+
+    border: 1px solid #c8e6c9;
+
+    color: #2e7d32;
+}
+
+
+/* ============================================================ */
+/* ERROR MESSAGE                                                 */
+/* ============================================================ */
+
+.flash.error {
+    background: #ffebee;
+
+    border: 1px solid #ffcdd2;
+
+    color: #c62828;
+}
+
+
+/* ============================================================ */
+/* WARNING MESSAGE                                               */
+/* ============================================================ */
+
+.flash.warning {
+    background: #fff8e1;
+
+    border: 1px solid #ffecb3;
+
+    color: #8d6e00;
+}
+
+
+/* ============================================================ */
+/* INFO MESSAGE                                                  */
+/* ============================================================ */
+
+.flash.info {
+    background: #e3f2fd;
+
+    border: 1px solid #bbdefb;
+
+    color: #1565c0;
+}
+
+
+/* ============================================================ */
+/* MOBILE                                                        */
+/* ============================================================ */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 20px 15px;
+    }
+
+    .wrapper {
+        margin-top: 30px;
+    }
+
+    .card {
+        padding: 28px 22px 25px;
+    }
+
+    .card h2 {
+        font-size: 25px;
+    }
+}
+

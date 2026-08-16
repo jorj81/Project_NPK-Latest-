@@ -1,0 +1,693 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Farmer - Soil History
+{% endblock %}
+
+
+<!-- ============================================================ -->
+<!-- PAGE-SPECIFIC CSS                                            -->
+<!-- ============================================================ -->
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/farmer/soil_history.css') }}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="farmer-soil-history">
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE TITLE                                               -->
+    <!-- ======================================================== -->
+
+    <h1>
+        ESP32 Soil History
+    </h1>
+
+
+    <p class="page-description">
+        View the historical soil sensor readings from your
+        registered ESP32 devices.
+    </p>
+
+
+    <hr>
+
+
+    <!-- ======================================================== -->
+    <!-- ERROR                                                    -->
+    <!-- ======================================================== -->
+
+    {% if error %}
+
+    <div class="error-message">
+
+        <strong>
+            Error:
+        </strong>
+
+        {{ error }}
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ======================================================== -->
+    <!-- REGISTERED DEVICES                                       -->
+    <!-- ======================================================== -->
+
+    <h2>
+        My Registered ESP32 Devices
+    </h2>
+
+
+    {% if devices %}
+
+    <p>
+        Select a device below to view its historical sensor data.
+    </p>
+
+
+    <!-- ======================================================== -->
+    <!-- DEVICE SELECTOR                                          -->
+    <!-- ======================================================== -->
+
+    <div class="device-selector">
+
+        {% for device in devices %}
+
+        <button
+            type="button"
+            class="device-select-button"
+            onclick="showDevice({{ loop.index0 }})"
+        >
+            Device {{ device.device_id }}
+        </button>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- TIME PERIOD FILTER                                       -->
+    <!-- ======================================================== -->
+
+    <div class="history-filter">
+
+        <h3>
+            History Filter
+        </h3>
+
+
+        <form
+            method="GET"
+            class="filter-form"
+        >
+
+            <div class="filter-field">
+
+                <label for="filter">
+                    Display Period:
+                </label>
+
+
+                <select
+                    name="filter"
+                    id="filter"
+                >
+
+                    <option
+                        value="last_30_minutes"
+                        {% if current_filter == "last_30_minutes" %}
+                            selected
+                        {% endif %}
+                    >
+                        Last 30 Minutes
+                    </option>
+
+
+                    <option
+                        value="last_1_hour"
+                        {% if current_filter == "last_1_hour" %}
+                            selected
+                        {% endif %}
+                    >
+                        Last 1 Hour
+                    </option>
+
+
+                    <option
+                        value="last_12_hours"
+                        {% if current_filter == "last_12_hours" %}
+                            selected
+                        {% endif %}
+                    >
+                        Last 12 Hours
+                    </option>
+
+
+                    <option
+                        value="last_24_hours"
+                        {% if current_filter == "last_24_hours" %}
+                            selected
+                        {% endif %}
+                    >
+                        Last 24 Hours
+                    </option>
+
+
+                    <option
+                        value="last_7_days"
+                        {% if current_filter == "last_7_days" %}
+                            selected
+                        {% endif %}
+                    >
+                        Last 7 Days
+                    </option>
+
+
+                    <option
+                        value="last_30_days"
+                        {% if current_filter == "last_30_days" %}
+                            selected
+                        {% endif %}
+                    >
+                        Last 30 Days
+                    </option>
+
+
+                    <option
+                        value="all"
+                        {% if current_filter == "all" %}
+                            selected
+                        {% endif %}
+                    >
+                        All Records
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="apply-filter-button"
+            >
+                Apply Filter
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ======================================================== -->
+    <!-- DEVICE HISTORY                                           -->
+    <!-- ======================================================== -->
+
+    {% for device in devices %}
+
+    <div
+        class="device-panel"
+        id="device-{{ loop.index0 }}"
+        style="display: none;"
+    >
+
+
+        <!-- ==================================================== -->
+        <!-- DEVICE INFORMATION                                   -->
+        <!-- ==================================================== -->
+
+        <div class="device-header">
+
+            <h2>
+                Device {{ device.device_id }}
+            </h2>
+
+        </div>
+
+
+        <div class="device-information">
+
+
+            <!-- ================================================= -->
+            <!-- DEVICE ID                                         -->
+            <!-- ================================================= -->
+
+            <div class="device-info-item">
+
+                <span class="info-label">
+                    Device ID
+                </span>
+
+                <span class="info-value">
+                    {{ device.device_id }}
+                </span>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- BARANGAY                                          -->
+            <!-- ================================================= -->
+
+            <div class="device-info-item">
+
+                <span class="info-label">
+                    Barangay
+                </span>
+
+                <span class="info-value">
+
+                    {% if device.barangay_name %}
+
+                        {{ device.barangay_name }}
+
+                    {% else %}
+
+                        Not available
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- LOCATION                                          -->
+            <!-- ================================================= -->
+
+            <div class="device-info-item">
+
+                <span class="info-label">
+                    Location
+                </span>
+
+                <span class="info-value">
+
+                    {% if device.location %}
+
+                        {{ device.location }}
+
+                    {% else %}
+
+                        Not available
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- ==================================================== -->
+        <!-- HISTORY INFORMATION                                  -->
+        <!-- ==================================================== -->
+
+        <h3>
+            Historical Sensor Readings
+        </h3>
+
+
+        <p class="showing-period">
+
+            <strong>
+                Showing:
+            </strong>
+
+
+            {% if current_filter == "last_30_minutes" %}
+
+                Last 30 Minutes
+
+            {% elif current_filter == "last_1_hour" %}
+
+                Last 1 Hour
+
+            {% elif current_filter == "last_12_hours" %}
+
+                Last 12 Hours
+
+            {% elif current_filter == "last_24_hours" %}
+
+                Last 24 Hours
+
+            {% elif current_filter == "last_7_days" %}
+
+                Last 7 Days
+
+            {% elif current_filter == "last_30_days" %}
+
+                Last 30 Days
+
+            {% elif current_filter == "all" %}
+
+                All Records
+
+            {% else %}
+
+                Selected Period
+
+            {% endif %}
+
+        </p>
+
+
+        <!-- ==================================================== -->
+        <!-- HISTORY TABLE                                        -->
+        <!-- ==================================================== -->
+
+        {% if device.history %}
+
+        <div class="history-table-container">
+
+            <table class="history-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            History ID
+                        </th>
+
+                        <th>
+                            Soil Moisture
+                        </th>
+
+                        <th>
+                            Nitrogen
+                        </th>
+
+                        <th>
+                            Phosphorus
+                        </th>
+
+                        <th>
+                            Potassium
+                        </th>
+
+                        <th>
+                            Recorded At
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for record in device.history %}
+
+                    <tr>
+
+                        <td>
+                            {{ record.history_id }}
+                        </td>
+
+
+                        <td>
+
+                            {% if record.soil_moisture is not none %}
+
+                                {{ record.soil_moisture }}
+
+                            {% else %}
+
+                                <span class="no-data">
+                                    No data
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if record.nitrogen is not none %}
+
+                                {{ record.nitrogen }}
+
+                            {% else %}
+
+                                <span class="no-data">
+                                    No data
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if record.phosphorus is not none %}
+
+                                {{ record.phosphorus }}
+
+                            {% else %}
+
+                                <span class="no-data">
+                                    No data
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if record.potassium is not none %}
+
+                                {{ record.potassium }}
+
+                            {% else %}
+
+                                <span class="no-data">
+                                    No data
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if record.recorded_at %}
+
+                                {{ record.recorded_at }}
+
+                            {% else %}
+
+                                <span class="no-data">
+                                    No date
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ==================================================== -->
+        <!-- NO HISTORY                                           -->
+        <!-- ==================================================== -->
+
+        <div class="no-history">
+
+            <p>
+                No historical sensor data found for this device
+                during the selected period.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+    {% endfor %}
+
+
+    {% else %}
+
+
+    <!-- ======================================================== -->
+    <!-- NO REGISTERED DEVICES                                    -->
+    <!-- ======================================================== -->
+
+    <div class="no-devices">
+
+        <h3>
+            No Registered ESP32 Devices
+        </h3>
+
+
+        <p>
+            You currently have no ESP32 devices registered to your
+            account.
+        </p>
+
+
+        <a
+            href="{{ url_for('farmer_dashboard.create_device_page') }}"
+            class="farmer-button"
+        >
+            Register an ESP32 Device
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+    <!-- ======================================================== -->
+    <!-- BACK TO DASHBOARD                                        -->
+    <!-- ======================================================== -->
+
+    <div class="page-navigation">
+
+        <a
+            href="{{ url_for('farmer_dashboard.dashboard_page') }}"
+            class="farmer-button secondary-button"
+        >
+            Back to Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ============================================================ -->
+<!-- DEVICE SWITCHING                                             -->
+<!-- ============================================================ -->
+
+<script>
+
+function showDevice(deviceIndex)
+{
+
+    const panels =
+        document.querySelectorAll(
+            ".device-panel"
+        );
+
+
+    panels.forEach(
+        function(panel)
+        {
+
+            panel.style.display = "none";
+
+        }
+    );
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".device-select-button"
+        );
+
+
+    buttons.forEach(
+        function(button)
+        {
+
+            button.classList.remove(
+                "active-device"
+            );
+
+        }
+    );
+
+
+    const selectedDevice =
+        document.getElementById(
+            "device-" + deviceIndex
+        );
+
+
+    if (selectedDevice)
+    {
+
+        selectedDevice.style.display = "block";
+
+    }
+
+
+    if (buttons[deviceIndex])
+    {
+
+        buttons[deviceIndex].classList.add(
+            "active-device"
+        );
+
+    }
+
+}
+
+
+/* ========================================================= */
+/* SHOW FIRST REGISTERED DEVICE AUTOMATICALLY                */
+/* ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function()
+    {
+
+        {% if devices %}
+
+        showDevice(0);
+
+        {% endif %}
+
+    }
+);
+
+</script>
+
+
+{% endblock %}
