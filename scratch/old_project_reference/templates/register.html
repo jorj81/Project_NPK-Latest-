@@ -77,7 +77,6 @@
         padding: 12px 15px;
         border: 2px solid #f0f0f0;
         transition: all 0.3s ease;
-        width: 100%;
     }
 
     .form-control:focus {
@@ -162,6 +161,42 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Password Strength Indicator */
+    .password-strength-container {
+        margin-top: 8px;
+        margin-bottom: 15px;
+    }
+
+    .password-strength-bar {
+        height: 6px;
+        border-radius: 3px;
+        background: #e0e0e0;
+        overflow: hidden;
+        margin-bottom: 6px;
+    }
+
+    .password-strength-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    .password-strength-fill.weak { width: 33%; background: #dc3545; }
+    .password-strength-fill.fair { width: 66%; background: #ffc107; }
+    .password-strength-fill.strong { width: 100%; background: #28a745; }
+
+    .password-strength-text {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .password-strength-text.weak { color: #dc3545; }
+    .password-strength-text.fair { color: #ffc107; }
+    .password-strength-text.strong { color: #28a745; }
+
     /* Tooltips */
     .tooltip-icon {
         cursor: help;
@@ -181,13 +216,6 @@
     /* Password Visibility Toggle */
     .password-input-wrapper {
         position: relative;
-        flex: 1 1 auto;
-        width: 1%;
-    }
-
-    .input-group > .password-input-wrapper > .form-control {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
     }
 
     .password-toggle-btn {
@@ -244,78 +272,61 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-header">
-            <i class="fas fa-user-plus"></i>
-            <h3 class="mb-0 heading-cycle" id="heading">Register User</h3>
+            <i class="fas fa-tractor"></i>
+            <h3 class="mb-0 heading-cycle" id="heading">Register Farmer</h3>
             <p class="mb-0 opacity-75">Join the precision farming revolution</p>
         </div>
         <div class="auth-body">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert {% if category == 'success' %}alert-success{% else %}alert-error{% endif %}" role="alert">
-                            <i class="fas {% if category == 'success' %}fa-check-circle{% else %}fa-exclamation-circle me-2{% endif %}"></i>{{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
-            <form action="{{ url_for('auth.create_user_route') }}" method="POST" id="registerForm">
+            {% if success %}
+                <div class="alert alert-success" role="alert">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Account created successfully!</strong>
+                    <p class="mb-0 mt-2">Your farmer account is ready. <a href="/login" style="color: #155724; font-weight: 600;">Sign in here</a> to get started.</p>
+                </div>
+            {% endif %}
+            {% if error %}
+                <div class="alert alert-error" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" id="registerForm">
                 <div class="mb-3">
                     <div class="form-label-with-tooltip">
                         <label class="form-label mb-0">Choose Username</label>
+                        <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Username must be unique and at least 3 characters long"></i>
                     </div>
                     <div class="input-group mt-2">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" name="username" class="form-control" placeholder="Create a username" required>
+                        <span class="input-group-text"><i class="fas fa-user-plus"></i></span>
+                        <input type="text" name="username" class="form-control" placeholder="Create a username" minlength="3" required>
                     </div>
                 </div>
-
-                <div class="mb-3">
-                    <div class="form-label-with-tooltip">
-                        <label class="form-label mb-0">Contact Number</label>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" name="contact_number" class="form-control" placeholder="Enter contact number" required>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <div class="form-label-with-tooltip">
-                        <label class="form-label mb-0">Role</label>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
-                        <select name="user_role_id" class="form-control" required>
-                            <option value="">Select Role</option>
-                            <option value="4">User</option>
-                            <option value="3">Farmer</option>
-                            <option value="2">Technologist</option>
-                            <option value="1">Admin</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="mb-4">
                     <div class="form-label-with-tooltip">
                         <label class="form-label mb-0">Set Password</label>
+                        <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Use uppercase, lowercase, numbers, and special characters for better security"></i>
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        <div class="password-input-wrapper flex-grow-1" style="width: 100%;">
-                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="Create a strong password" required>
+                        <div class="password-input-wrapper flex-grow-1">
+                            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="Create a strong password" minlength="6" required>
                             <button type="button" class="password-toggle-btn" id="togglePasswordBtn" title="Show/Hide password">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
+                    </div>
+                    <div class="password-strength-container">
+                        <div class="password-strength-bar">
+                            <div class="password-strength-fill" id="strengthFill"></div>
+                        </div>
+                        <div class="password-strength-text" id="strengthText"></div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-auth" id="submitBtn">Create Account</button>
             </form>
 
             <div class="auth-footer">
-                <p>Already a member? <a href="{{ url_for('auth.login') }}">Login Here</a></p>
-                <a href="{{ url_for('public.home') }}" class="text-muted d-block mt-3 small"><i class="fas fa-arrow-left me-1"></i> Back to Home</a>
+                <p>Already a member? <a href="/login">Login Here</a></p>
+                <a href="/" class="text-muted d-block mt-3 small"><i class="fas fa-arrow-left me-1"></i> Back to Home</a>
             </div>
         </div>
     </div>
@@ -341,6 +352,49 @@
             heading.style.opacity = "1";
         }, 100);
     }, 2000);
+
+    // Password Strength Indicator
+    const passwordInput = document.getElementById('passwordInput');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
+
+    function calculatePasswordStrength(password) {
+        let strength = 0;
+        
+        if (password.length >= 8) strength += 20;
+        else if (password.length >= 6) strength += 10;
+        
+        if (/[a-z]/.test(password)) strength += 20;
+        if (/[A-Z]/.test(password)) strength += 20;
+        if (/[0-9]/.test(password)) strength += 20;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+        
+        return Math.min(strength, 100);
+    }
+
+    passwordInput.addEventListener('input', function() {
+        const strength = calculatePasswordStrength(this.value);
+        
+        strengthFill.classList.remove('weak', 'fair', 'strong');
+        strengthText.classList.remove('weak', 'fair', 'strong');
+        
+        if (strength === 0) {
+            strengthFill.style.width = '0%';
+            strengthText.textContent = '';
+        } else if (strength < 50) {
+            strengthFill.classList.add('weak');
+            strengthText.classList.add('weak');
+            strengthText.textContent = 'Weak';
+        } else if (strength < 80) {
+            strengthFill.classList.add('fair');
+            strengthText.classList.add('fair');
+            strengthText.textContent = 'Fair';
+        } else {
+            strengthFill.classList.add('strong');
+            strengthText.classList.add('strong');
+            strengthText.textContent = 'Strong';
+        }
+    });
 
     // Loading Spinner on Submit
     document.getElementById('registerForm').addEventListener('submit', function(e) {

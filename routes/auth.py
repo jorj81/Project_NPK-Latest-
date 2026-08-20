@@ -520,11 +520,14 @@ def create_user_route():
     ).strip()
 
 
+    # Since barangay_id is removed from the form, give it a default valid ID to satisfy the database
+    if not barangay_id:
+        barangay_id = "13"
+
     if (
         not username
         or not password
         or not contact_number
-        or not barangay_id
         or not user_role_id
     ):
 

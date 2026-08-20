@@ -1,168 +1,102 @@
 {% extends "base.html" %}
 
-
 {% block title %}
 Farmer Dashboard
 {% endblock %}
 
-
-<!-- ============================================================ -->
-<!-- PAGE-SPECIFIC CSS                                            -->
-<!-- ============================================================ -->
-
-{% block page_css %}
-
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/farmer/dashboard.css') }}"
->
-
-{% endblock %}
-
-
 {% block content %}
+<style>
+    .dashboard-header {
+        background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
 
-<div class="farmer-dashboard">
+    .dashboard-header h1 {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
 
+    .dashboard-card {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+        overflow: hidden;
+    }
 
-    <!-- ======================================================== -->
-    <!-- PAGE TITLE                                               -->
-    <!-- ======================================================== -->
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
 
-    <h1>
-        Farmer Dashboard
-    </h1>
+    .card-icon {
+        font-size: 2.5rem;
+        color: var(--accent-green);
+        margin-bottom: 20px;
+    }
 
+    .btn-dashboard {
+        background: var(--primary-green);
+        color: white;
+        border-radius: 12px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
-    <!-- ======================================================== -->
-    <!-- WELCOME MESSAGE                                          -->
-    <!-- ======================================================== -->
+    .btn-dashboard:hover {
+        background: var(--dark-green);
+        color: white;
+        transform: scale(1.02);
+    }
+</style>
 
-    <p>
-        Welcome,
-        <strong>
-            {{ session.get("username") }}
-        </strong>
-    </p>
+<div class="dashboard-header">
+    <h1><i class="fas fa-tractor"></i> Farmer Dashboard</h1>
+    <p class="mb-0">Welcome back, <strong>{{ session.get("username") }}</strong>. Manage your soil data and devices.</p>
+</div>
 
+<div class="row g-4">
+    <!-- Soil Monitoring -->
+    <div class="col-md-4">
+        <div class="card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-seedling"></i></div>
+            <h4 class="mb-3">Soil Monitoring</h4>
+            <p class="text-muted small mb-4">View real-time NPK data and historical soil conditions.</p>
+            <a href="{{ url_for('farmer_dashboard.farmer_soil_data_page') }}" class="btn btn-dashboard">Current Data</a>
+            <a href="{{ url_for('farmer_dashboard.farmer_soil_history_page') }}" class="btn btn-dashboard btn-outline-success bg-transparent text-success border">History</a>
+        </div>
+    </div>
 
-    <hr>
+    <!-- Device Management -->
+    <div class="col-md-4">
+        <div class="card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-microchip"></i></div>
+            <h4 class="mb-3">Device Management</h4>
+            <p class="text-muted small mb-4">Register and configure your ESP32 IoT sensors.</p>
+            <a href="{{ url_for('farmer_dashboard.create_device_page') }}" class="btn btn-dashboard">Register Device</a>
+            <a href="{{ url_for('farmer_dashboard.devices_page') }}" class="btn btn-dashboard btn-outline-success bg-transparent text-success border">My Devices</a>
+        </div>
+    </div>
 
-
-    <!-- ======================================================== -->
-    <!-- ESP32 SOIL MONITORING                                    -->
-    <!-- ======================================================== -->
-
-    <h3>
-        ESP32 Soil Monitoring
-    </h3>
-
-
-    <!-- ======================================================== -->
-    <!-- CURRENT SOIL DATA                                        -->
-    <!-- ======================================================== -->
-
-    <p>
-
-        <a
-            href="{{ url_for('farmer_dashboard.farmer_soil_data_page') }}"
-            class="farmer-button"
-        >
-            View Current Soil Data
-        </a>
-
-    </p>
-
-
-    <!-- ======================================================== -->
-    <!-- SOIL HISTORY                                             -->
-    <!-- ======================================================== -->
-
-    <p>
-
-        <a
-            href="{{ url_for('farmer_dashboard.farmer_soil_history_page') }}"
-            class="farmer-button"
-        >
-            View Soil History
-        </a>
-
-    </p>
-
-
-    <hr>
-
-
-    <!-- ======================================================== -->
-    <!-- ESP32 DEVICE MANAGEMENT                                  -->
-    <!-- ======================================================== -->
-
-    <h3>
-        ESP32 Device Management
-    </h3>
-
-
-    <!-- ======================================================== -->
-    <!-- REGISTER DEVICE                                          -->
-    <!-- ======================================================== -->
-
-    <p>
-
-        <a
-            href="{{ url_for('farmer_dashboard.create_device_page') }}"
-            class="farmer-button"
-        >
-            Register Device
-        </a>
-
-    </p>
-
-
-    <!-- ======================================================== -->
-    <!-- MY DEVICES                                               -->
-    <!-- ======================================================== -->
-
-    <p>
-
-        <a
-            href="{{ url_for('farmer_dashboard.devices_page') }}"
-            class="farmer-button"
-        >
-            My Devices
-        </a>
-
-    </p>
-
-
-    <hr>
-
-
-    <!-- ======================================================== -->
-    <!-- COMMENTS                                                -->
-    <!-- ======================================================== -->
-
-    <h3>
-        Comments
-    </h3>
-
-
-    <p>
-        You can add, edit, or delete your comments.
-    </p>
-
-
-    <p>
-
-        <a
-            href="{{ url_for('farmer_dashboard.comment_page') }}"
-            class="farmer-button"
-        >
-            Comments
-        </a>
-
-    </p>
-
-
+    <!-- Community / Comments -->
+    <div class="col-md-4">
+        <div class="card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-comments"></i></div>
+            <h4 class="mb-3">Community</h4>
+            <p class="text-muted small mb-4">Share notes, ask questions, or review your logs.</p>
+            <a href="{{ url_for('farmer_dashboard.comment_page') }}" class="btn btn-dashboard">View Comments</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

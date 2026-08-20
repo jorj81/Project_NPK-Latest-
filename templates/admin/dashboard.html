@@ -1,602 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Admin Dashboard
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/admin/dashboard.css') }}"
-    >
-
-</head>
-
-
-<body>
-
-
-<!-- ============================================================ -->
-<!-- ADMIN DASHBOARD                                              -->
-<!-- ============================================================ -->
-
-<div class="admin-dashboard">
-
-
-    <!-- ======================================================== -->
-    <!-- FULL WIDTH TOP HEADER                                    -->
-    <!-- ======================================================== -->
-
-    <header class="admin-header">
-
-
-        <div class="admin-header-inner">
-
-
-            <!-- ================================================= -->
-            <!-- ADMIN BRAND                                       -->
-            <!-- ================================================= -->
-
-            <div class="header-left">
-
-
-                <div class="system-indicator">
-                </div>
-
-
-                <div class="admin-brand">
-
-                    <h1>
-                        ADMIN DASHBOARD
-                    </h1>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- HEADER RIGHT                                      -->
-            <!-- ================================================= -->
-
-            <div class="header-right">
-
-
-                <!-- ============================================= -->
-                <!-- SYSTEM STATUS                                 -->
-                <!-- ============================================= -->
-
-                <div class="system-status">
-
-
-                    <span class="status-dot">
-                    </span>
-
-
-                    <span>
-                        SYSTEM ONLINE
-                    </span>
-
-
-                </div>
-
-
-                <!-- ============================================= -->
-                <!-- LOGOUT                                         -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('auth.logout') }}"
-                    class="admin-logout"
-                    onclick="return confirm('Are you sure you want to logout?');"
-                >
-                    Logout
-                </a>
-
-
-            </div>
-
-
-        </div>
-
-
-    </header>
-
-
-    <!-- ======================================================== -->
-    <!-- MAIN DASHBOARD CONTENT                                   -->
-    <!-- ======================================================== -->
-
-    <main>
-
-
-        <!-- ==================================================== -->
-        <!-- WELCOME                                              -->
-        <!-- ==================================================== -->
-
-        <section class="welcome-section">
-
-
-            <div>
-
-
-                <span class="section-tag">
-                    AUTHENTICATED ADMINISTRATOR
-                </span>
-
-
-                <h2>
-
-                    Welcome,
-
-                    <strong>
-                        {{ username }}
-                    </strong>
-
-                </h2>
-
-
-            </div>
-
-
-        </section>
-
-
-        <!-- ==================================================== -->
-        <!-- USER STATISTICS                                      -->
-        <!-- ==================================================== -->
-
-        <section class="statistics-section">
-
-
-            <div class="section-heading">
-
-
-                <span class="heading-line">
-                </span>
-
-
-                <h2>
-                    SYSTEM STATISTICS
-                </h2>
-
-
-            </div>
-
-
-            <div class="statistics-grid">
-
-
-                <!-- ============================================= -->
-                <!-- TOTAL USERS                                   -->
-                <!-- ============================================= -->
-
-                <div class="stat-card">
-
-
-                    <div class="stat-card-top">
-
-
-                        <span class="stat-label">
-                            TOTAL USERS
-                        </span>
-
-
-                        <span class="stat-code">
-                            U-001
-                        </span>
-
-
-                    </div>
-
-
-                    <div class="stat-value">
-
-                        {{ total_users }}
-
-                    </div>
-
-
-                    <div class="stat-footer">
-
-
-                        <span>
-                            REGISTERED ACCOUNTS
-                        </span>
-
-
-                        <span class="stat-arrow">
-                            ↗
-                        </span>
-
-
-                    </div>
-
-
-                </div>
-
-
-                <!-- ============================================= -->
-                <!-- ACTIVE USERS                                  -->
-                <!-- ============================================= -->
-
-                <div class="stat-card active-stat">
-
-
-                    <div class="stat-card-top">
-
-
-                        <span class="stat-label">
-                            ACTIVE USERS
-                        </span>
-
-
-                        <span class="stat-code">
-                            U-002
-                        </span>
-
-
-                    </div>
-
-
-                    <div class="stat-value">
-
-                        {{ active_users }}
-
-                    </div>
-
-
-                    <div class="stat-footer">
-
-
-                        <span>
-                            CURRENTLY ONLINE
-                        </span>
-
-
-                        <span class="stat-arrow">
-                            ●
-                        </span>
-
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-
-        <!-- ==================================================== -->
-        <!-- ADMINISTRATION                                       -->
-        <!-- ==================================================== -->
-
-        <section class="administration-section">
-
-
-            <div class="section-heading">
-
-
-                <span class="heading-line">
-                </span>
-
-
-                <h2>
-                    ADMINISTRATION
-                </h2>
-
-
-            </div>
-
-
-            <div class="admin-menu">
-
-
-                <!-- ============================================= -->
-                <!-- USERS DATA                                    -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('admin_dashboard.users_data') }}"
-                    class="admin-menu-card"
-                >
-
-
-                    <div class="menu-number">
-                        02
-                    </div>
-
-
-                    <div class="menu-icon">
-                        ◎
-                    </div>
-
-
-                    <div class="menu-content">
-
-
-                        <h3>
-                            USERS DATA
-                        </h3>
-
-
-                        <p>
-                            Manage registered user information
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="menu-arrow">
-                        →
-                    </div>
-
-
-                </a>
-
-
-                <!-- ============================================= -->
-                <!-- DEVICES                                      -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('admin_dashboard.devices_page') }}"
-                    class="admin-menu-card"
-                >
-
-
-                    <div class="menu-number">
-                        03
-                    </div>
-
-
-                    <div class="menu-icon">
-                        ◉
-                    </div>
-
-
-                    <div class="menu-content">
-
-
-                        <h3>
-                            DEVICES
-                        </h3>
-
-
-                        <p>
-                            Monitor and manage connected ESP32 devices
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="menu-arrow">
-                        →
-                    </div>
-
-
-                </a>
-
-
-                <!-- ============================================= -->
-                <!-- CURRENT SOIL DATA                             -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('admin_dashboard.soil_data_page') }}"
-                    class="admin-menu-card"
-                >
-
-
-                    <div class="menu-number">
-                        04
-                    </div>
-
-
-                    <div class="menu-icon">
-                        ◇
-                    </div>
-
-
-                    <div class="menu-content">
-
-
-                        <h3>
-                            CURRENT SOIL DATA
-                        </h3>
-
-
-                        <p>
-                            View real-time agricultural sensor readings
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="menu-arrow">
-                        →
-                    </div>
-
-
-                </a>
-
-
-                <!-- ============================================= -->
-                <!-- SOIL HISTORY                                  -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('admin_dashboard.soil_history_page') }}"
-                    class="admin-menu-card"
-                >
-
-
-                    <div class="menu-number">
-                        05
-                    </div>
-
-
-                    <div class="menu-icon">
-                        ◌
-                    </div>
-
-
-                    <div class="menu-content">
-
-
-                        <h3>
-                            SOIL HISTORY
-                        </h3>
-
-
-                        <p>
-                            Analyze historical soil sensor records
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="menu-arrow">
-                        →
-                    </div>
-
-
-                </a>
-
-
-                <!-- ============================================= -->
-                <!-- ACTIVE USERS                                  -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('admin_dashboard.active_users_page') }}"
-                    class="admin-menu-card"
-                >
-
-
-                    <div class="menu-number">
-                        06
-                    </div>
-
-
-                    <div class="menu-icon">
-                        ◍
-                    </div>
-
-
-                    <div class="menu-content">
-
-
-                        <h3>
-                            ACTIVE USERS
-                        </h3>
-
-
-                        <p>
-                            Monitor users currently accessing the system
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="menu-arrow">
-                        →
-                    </div>
-
-
-                </a>
-
-
-                <!-- ============================================= -->
-                <!-- COMMENTS                                     -->
-                <!-- ============================================= -->
-
-                <a
-                    href="{{ url_for('admin_dashboard.comments_data') }}"
-                    class="admin-menu-card"
-                >
-
-
-                    <div class="menu-number">
-                        07
-                    </div>
-
-
-                    <div class="menu-icon">
-                        ◫
-                    </div>
-
-
-                    <div class="menu-content">
-
-
-                        <h3>
-                            COMMENTS
-                        </h3>
-
-
-                        <p>
-                            Review and manage user comments
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="menu-arrow">
-                        →
-                    </div>
-
-
-                </a>
-
-
-            </div>
-
-
-        </section>
-
-
-    </main>
-
-
-    <!-- ======================================================== -->
-    <!-- FOOTER                                                   -->
-    <!-- ======================================================== -->
-
-    <footer class="admin-footer">
-
-
-        <div>
-            ADMINISTRATIVE CONTROL SYSTEM
-        </div>
-
-
-    </footer>
-
-
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+<style>
+    .dashboard-header {
+        background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .dashboard-header h1 {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        border-left: 5px solid var(--accent-green);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .stat-card .icon {
+        font-size: 2.5rem;
+        color: var(--accent-green);
+        margin-right: 20px;
+    }
+
+    .stat-card .info h3 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0;
+        color: #333;
+    }
+
+    .stat-card .info p {
+        margin: 0;
+        color: #777;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .dashboard-card {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        color: var(--primary-green);
+        margin-bottom: 20px;
+    }
+
+    .btn-dashboard {
+        background: var(--primary-green);
+        color: white;
+        border-radius: 12px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .btn-dashboard:hover {
+        background: var(--dark-green);
+        color: white;
+        transform: scale(1.02);
+    }
+</style>
+
+<div class="dashboard-header">
+    <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+    <p class="mb-0">Welcome back, <strong>{{ username }}</strong>. System overview and management.</p>
 </div>
 
+<!-- Statistics Row -->
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="stat-card">
+            <div class="icon"><i class="fas fa-users"></i></div>
+            <div class="info">
+                <h3>{{ total_users }}</h3>
+                <p>Total Registered Users</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="stat-card" style="border-left-color: #2196F3;">
+            <div class="icon" style="color: #2196F3;"><i class="fas fa-user-check"></i></div>
+            <div class="info">
+                <h3>{{ active_users }}</h3>
+                <p>Active Users (24h)</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-</body>
+<div class="row g-4">
+    <!-- User Management -->
+    <div class="col-md-4">
+        <div class="card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-users-cog"></i></div>
+            <h4 class="mb-3">User Management</h4>
+            <p class="text-muted small mb-4">Manage user accounts and view active sessions.</p>
+            <a href="{{ url_for('admin_dashboard.users_data') }}" class="btn btn-dashboard">All Users</a>
+            <a href="{{ url_for('admin_dashboard.active_users_page') }}" class="btn btn-dashboard btn-outline-success bg-transparent text-success border">Active Users</a>
+        </div>
+    </div>
 
-</html>
+    <!-- Data Management -->
+    <div class="col-md-4">
+        <div class="card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-database"></i></div>
+            <h4 class="mb-3">Soil & Devices</h4>
+            <p class="text-muted small mb-4">Monitor global ESP32 data and device registries.</p>
+            <a href="{{ url_for('admin_dashboard.soil_data_page') }}" class="btn btn-dashboard">Current Soil Data</a>
+            <a href="{{ url_for('admin_dashboard.soil_history_page') }}" class="btn btn-dashboard">Soil History</a>
+            <a href="{{ url_for('admin_dashboard.devices_page') }}" class="btn btn-dashboard btn-outline-success bg-transparent text-success border">All Devices</a>
+        </div>
+    </div>
+
+    <!-- Community Moderation -->
+    <div class="col-md-4">
+        <div class="card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-comments"></i></div>
+            <h4 class="mb-3">Moderation</h4>
+            <p class="text-muted small mb-4">Review community comments and logs.</p>
+            <a href="{{ url_for('admin_dashboard.comments_data') }}" class="btn btn-dashboard">Manage Comments</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

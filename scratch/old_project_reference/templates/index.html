@@ -153,8 +153,8 @@
         <p>Harnessing IoT for Smart, Sustainable, and Precision Farming. Monitor your soil's health in real-time.</p>
         
         <div class="d-flex flex-wrap justify-content-center">
-            <a href="{{ url_for('auth.add_user_form') }}" class="btn btn-hero btn-hero-primary">Get Started</a>
-            <a href="{{ url_for('auth.login') }}" class="btn btn-hero btn-hero-outline">Sign In</a>
+            <a href="/register" class="btn btn-hero btn-hero-primary">Get Started</a>
+            <a href="/login" class="btn btn-hero btn-hero-outline">Sign In</a>
         </div>
     </div>
 </div>
@@ -171,10 +171,9 @@
         <p>Visualize trends and optimize your crop yield with data-driven insights.</p>
     </div>
     <div class="feature-item">
-        <i class="fas fa-network-wired"></i>
-        <h3>Server Info</h3>
-        <p><strong>IP:</strong> {{ local_ip }}<br>
-        <strong>URL:</strong> <a href="{{ server_url }}">{{ server_url }}</a></p>
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Accessible Anywhere</h3>
+        <p>Manage your farm from any device, anytime, with our responsive platform.</p>
     </div>
 </div>
 

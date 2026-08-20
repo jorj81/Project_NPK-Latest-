@@ -135,13 +135,7 @@
 
     .password-input-wrapper {
         position: relative;
-        flex: 1 1 auto;
-        width: 1%;
-    }
-
-    .input-group > .password-input-wrapper > .form-control {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+        width: 100%;
     }
 
     .password-toggle-btn {
@@ -258,21 +252,16 @@
     <div class="auth-card">
         <div class="auth-header">
             <i class="fas fa-seedling"></i>
-            <h3 class="mb-0">User Login</h3>
+            <h3 class="mb-0">Farmer Login</h3>
             <p class="mb-0 opacity-75">Welcome back to Project NPK</p>
         </div>
         <div class="auth-body">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-validation" role="alert">
-                            <i class="fas fa-exclamation-circle me-2"></i>{{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
-            <form action="{{ url_for('auth.login') }}" method="POST" id="loginForm">
+            {% if error %}
+                <div class="alert alert-validation" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" id="loginForm">
                 <div class="mb-3">
                     <label class="form-label">Username</label>
                     <div class="input-group">
@@ -296,8 +285,8 @@
             </form>
 
             <div class="auth-footer">
-                <p>New here? <a href="{{ url_for('auth.add_user_form') }}">Create an Account</a></p>
-                <a href="{{ url_for('public.home') }}" class="text-muted d-block mt-3 small"><i class="fas fa-arrow-left me-1"></i> Back to Home</a>
+                <p>New here? <a href="/register">Create a Farmer Account</a></p>
+                <a href="/" class="text-muted d-block mt-3 small"><i class="fas fa-arrow-left me-1"></i> Back to Home</a>
             </div>
         </div>
     </div>
