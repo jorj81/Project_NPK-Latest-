@@ -1,93 +1,233 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 40px 20px;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    background: hwb(0 100% 0%);
+    padding: 0;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f4f9f4, #ffffff);
     color: #1e1e1e;
+    min-height: 100vh;
 }
 
+/* =========================
+   NAVBAR STYLE
+========================= */
+
+body::before {
+    content: "";
+    display: block;
+    height: 70px;
+    background: linear-gradient(135deg, #176b2c, #2e7d32);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+body {
+    padding-bottom: 40px;
+}
 
 h1 {
-    font-size:28px;
-    text-align:center;
-    margin-bottom: 40px;
-    color: #07760d;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin: 45px 0 25px;
+    color: #176b2c;
+    letter-spacing: 0.3px;
 }
-
 
 h2 {
-    text-align:center;
-    margin-top: 15px;
-    color: #161515;
-}
-
-.indent {
-    text-indent: 20px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    color: #1f1f1f;
+    font-size: 23px;
+    font-weight: 600;
 }
 
 p {
-    line-height: 1.5;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #4b4b4b;
 }
 
+.indent {
+    text-indent: 25px;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+body > p {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #ffffff;
+    padding: 22px 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    border-left: 5px solid #4caf50;
+}
+
+/* =========================
+   HORIZONTAL LINE
+========================= */
 
 hr {
-    margin: 30px 0;
+    max-width: 850px;
+    margin: 35px auto;
     border: 0;
+    border-top: 1px solid #dce8dd;
 }
 
+/* =========================
+   SERVER INFORMATION CARD
+========================= */
+
+.server-info {
+    max-width: 850px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #e0ebe1;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Green accent at the top of the card */
+.server-info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #2e7d32, #66bb6a);
+}
+
+.server-info p {
+    margin: 14px 0;
+    padding: 12px 15px;
+    background: #f5faf5;
+    border-radius: 8px;
+}
+
+.server-info strong {
+    color: #176b2c;
+}
+
+/* =========================
+   LINKS
+========================= */
 
 a {
     color: #2e7d32;
     text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s ease;
 }
 
-
 a:hover {
+    color: #145a21;
     text-decoration: underline;
 }
 
-
-/* Main links */
-
-.actions {
-    margin-top: 20px;
-}
-
+/* =========================
+   ACTION BUTTONS
+========================= */
 
 .actions {
+    max-width: 850px;
+    margin: 30px auto;
     text-align: center;
 }
 
 .actions a {
     display: inline-block;
+    min-width: 120px;
+    padding: 11px 22px;
+    margin: 5px 7px;
 
-    padding: 10px 18px;
-    margin-right: 15px;
-
-    background: #2e7d32;
-    color: rgb(244, 248, 245);
-
-    border-radius: 6px;
-
-    text-decoration: none;
-}
-
-
-.actions a:hover {
-    background: #121312;
-}
-
-
-/* Server information */
-
-.server-info {
-    background: rgb(201, 215, 203);
-
-    padding: 20px;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: #ffffff;
 
     border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.25);
+
+    transition: all 0.25s ease;
+}
+
+.actions a:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32);
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
+}
+
+/* =========================
+   FLASH MESSAGES
+========================= */
+
+body > p:not(.indent) {
+    max-width: 850px;
+    margin: 15px auto;
+}
+
+body > p strong {
+    color: #2e7d32;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 768px) {
+
+    body::before {
+        height: 60px;
+    }
+
+    body {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-top: 35px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    body > p {
+        padding: 18px 20px;
+    }
+
+    .server-info {
+        padding: 23px 20px;
+    }
+
+    .actions a {
+        width: 90%;
+        max-width: 250px;
+        margin: 6px auto;
+    }
 }
