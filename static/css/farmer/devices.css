@@ -500,3 +500,61 @@
     }
 
 }
+/* ============================================================
+   AESTHETIC BUTTON OVERRIDES (AUTO-GENERATED)
+   ============================================================ */
+button, 
+input[type="submit"], 
+input[type="button"], 
+.dashboard-button, 
+.device-select-button, 
+.add-comment-button, 
+.save-comment-button,
+.btn {
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    background: linear-gradient(135deg, #2e7d32, #388e3c) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+button:hover, 
+input[type="submit"]:hover, 
+input[type="button"]:hover, 
+.dashboard-button:hover, 
+.device-select-button:hover, 
+.add-comment-button:hover, 
+.save-comment-button:hover,
+.btn:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3) !important;
+}
+
+button:active, 
+input[type="submit"]:active, 
+input[type="button"]:active, 
+.dashboard-button:active, 
+.device-select-button:active, 
+.add-comment-button:active, 
+.save-comment-button:active,
+.btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 5px rgba(46, 125, 50, 0.2) !important;
+}
+
+/* Red / Danger Buttons */
+.delete-comment-button, 
+.btn-danger {
+    background: linear-gradient(135deg, #ef5350, #d32f2f) !important;
+    color: #ffffff !important;
+}
+
+.delete-comment-button:hover, 
+.btn-danger:hover {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c) !important;
+    box-shadow: 0 6px 15px rgba(211, 47, 47, 0.3) !important;
+}

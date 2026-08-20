@@ -446,10 +446,21 @@ def add_user_form():
 
         roles = cursor.fetchall()
 
+        query_barangays = """
+            SELECT id, barangay_name
+            FROM barangays
+            ORDER BY barangay_name
+        """
+
+        cursor.execute(query_barangays)
+
+        barangays = cursor.fetchall()
+
 
         return render_template(
             "auth/add_user.html",
-            roles=roles
+            roles=roles,
+            barangays=barangays
         )
 
 

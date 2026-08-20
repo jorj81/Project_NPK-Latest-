@@ -7,88 +7,117 @@ Admin Dashboard
 {% block content %}
 <style>
     .dashboard-header {
-        background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+        background: linear-gradient(135deg, rgba(46,77,37,0.85), rgba(76,175,80,0.8));
         color: white;
         padding: 40px;
         border-radius: 20px;
         margin-bottom: 30px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dashboard-header::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.2) 0%, transparent 50%);
+        pointer-events: none;
     }
 
     .dashboard-header h1 {
         font-weight: 700;
         margin-bottom: 10px;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .stat-card {
-        background: white;
-        border-radius: 16px;
-        padding: 20px;
-        border-left: 5px solid var(--accent-green);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        padding: 25px;
         display: flex;
         align-items: center;
+        border-left: 5px solid var(--accent-green);
         margin-bottom: 20px;
     }
 
     .stat-card .icon {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         color: var(--accent-green);
         margin-right: 20px;
+        background: rgba(76, 175, 80, 0.1);
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
 
     .stat-card .info h3 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: 800;
         margin: 0;
-        color: #333;
+        color: #2e4d25;
     }
 
     .stat-card .info p {
         margin: 0;
-        color: #777;
+        color: #557755;
         text-transform: uppercase;
         font-size: 0.85rem;
-        font-weight: 600;
+        font-weight: 700;
+        letter-spacing: 0.5px;
     }
 
     .dashboard-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: none;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
         height: 100%;
         overflow: hidden;
-    }
-
-    .dashboard-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
     }
 
     .card-icon {
-        font-size: 2.5rem;
+        font-size: 3rem;
         color: var(--primary-green);
         margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+    
+    .dashboard-card:hover .card-icon {
+        transform: scale(1.1);
     }
 
     .btn-dashboard {
-        background: var(--primary-green);
+        background: linear-gradient(135deg, var(--primary-green), #388e3c);
         color: white;
         border-radius: 12px;
-        padding: 10px 20px;
+        padding: 12px 20px;
         font-weight: 600;
+        border: none;
         transition: all 0.3s ease;
         display: block;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
     }
 
     .btn-dashboard:hover {
-        background: var(--dark-green);
+        background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
         color: white;
-        transform: scale(1.02);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
+    }
+    
+    .btn-dashboard-outline {
+        background: transparent;
+        color: var(--primary-green);
+        border: 2px solid var(--primary-green);
+        box-shadow: none;
+    }
+    
+    .btn-dashboard-outline:hover {
+        background: rgba(46, 125, 50, 0.1);
+        color: var(--dark-green);
+        box-shadow: none;
     }
 </style>
 
@@ -100,7 +129,7 @@ Admin Dashboard
 <!-- Statistics Row -->
 <div class="row g-4 mb-4">
     <div class="col-md-6">
-        <div class="stat-card">
+        <div class="aesthetic-card stat-card">
             <div class="icon"><i class="fas fa-users"></i></div>
             <div class="info">
                 <h3>{{ total_users }}</h3>
@@ -109,8 +138,8 @@ Admin Dashboard
         </div>
     </div>
     <div class="col-md-6">
-        <div class="stat-card" style="border-left-color: #2196F3;">
-            <div class="icon" style="color: #2196F3;"><i class="fas fa-user-check"></i></div>
+        <div class="aesthetic-card stat-card" style="border-left-color: #388e3c;">
+            <div class="icon" style="color: #388e3c; background: rgba(56, 142, 60, 0.1);"><i class="fas fa-user-check"></i></div>
             <div class="info">
                 <h3>{{ active_users }}</h3>
                 <p>Active Users (24h)</p>
@@ -122,33 +151,33 @@ Admin Dashboard
 <div class="row g-4">
     <!-- User Management -->
     <div class="col-md-4">
-        <div class="card dashboard-card p-4 text-center">
+        <div class="aesthetic-card dashboard-card p-4 text-center">
             <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-            <h4 class="mb-3">User Management</h4>
-            <p class="text-muted small mb-4">Manage user accounts and view active sessions.</p>
+            <h4 class="mb-3 fw-bold">User Management</h4>
+            <p class="text-muted small mb-4 flex-grow-1">Manage user accounts and view active sessions seamlessly.</p>
             <a href="{{ url_for('admin_dashboard.users_data') }}" class="btn btn-dashboard">All Users</a>
-            <a href="{{ url_for('admin_dashboard.active_users_page') }}" class="btn btn-dashboard btn-outline-success bg-transparent text-success border">Active Users</a>
+            <a href="{{ url_for('admin_dashboard.active_users_page') }}" class="btn btn-dashboard btn-dashboard-outline">Active Users</a>
         </div>
     </div>
 
     <!-- Data Management -->
     <div class="col-md-4">
-        <div class="card dashboard-card p-4 text-center">
-            <div class="card-icon"><i class="fas fa-database"></i></div>
-            <h4 class="mb-3">Soil & Devices</h4>
-            <p class="text-muted small mb-4">Monitor global ESP32 data and device registries.</p>
+        <div class="aesthetic-card dashboard-card p-4 text-center">
+            <div class="card-icon"><i class="fas fa-seedling"></i></div>
+            <h4 class="mb-3 fw-bold">Soil & Devices</h4>
+            <p class="text-muted small mb-4 flex-grow-1">Monitor global ESP32 data and manage device registries.</p>
             <a href="{{ url_for('admin_dashboard.soil_data_page') }}" class="btn btn-dashboard">Current Soil Data</a>
             <a href="{{ url_for('admin_dashboard.soil_history_page') }}" class="btn btn-dashboard">Soil History</a>
-            <a href="{{ url_for('admin_dashboard.devices_page') }}" class="btn btn-dashboard btn-outline-success bg-transparent text-success border">All Devices</a>
+            <a href="{{ url_for('admin_dashboard.devices_page') }}" class="btn btn-dashboard btn-dashboard-outline">All Devices</a>
         </div>
     </div>
 
     <!-- Community Moderation -->
     <div class="col-md-4">
-        <div class="card dashboard-card p-4 text-center">
+        <div class="aesthetic-card dashboard-card p-4 text-center">
             <div class="card-icon"><i class="fas fa-comments"></i></div>
-            <h4 class="mb-3">Moderation</h4>
-            <p class="text-muted small mb-4">Review community comments and logs.</p>
+            <h4 class="mb-3 fw-bold">Moderation</h4>
+            <p class="text-muted small mb-4 flex-grow-1">Review community comments and system logs efficiently.</p>
             <a href="{{ url_for('admin_dashboard.comments_data') }}" class="btn btn-dashboard">Manage Comments</a>
         </div>
     </div>

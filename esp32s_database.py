@@ -1,4 +1,5 @@
 from users_database import connect_database
+from mysql.connector import Error
 
 
 def create_esp32_device(

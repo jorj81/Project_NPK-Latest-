@@ -30,13 +30,9 @@ def initialize_database():
         with open(db_file_path, 'r', encoding='utf-8') as file:
             sql_content = file.read()
 
-        # Strip all INSERT INTO statements to ensure we only build the structure
-        # We match from INSERT INTO to the first semicolon
-        clean_sql = re.sub(r'(?i)^INSERT INTO[^;]*;', '', sql_content, flags=re.MULTILINE)
-
-        # Manually split and execute statements
-        print("Executing schema migrations (ignoring data inserts)...")
-        statements = clean_sql.split(';')
+        # Execute statements including INSERT INTO to populate data
+        print("Executing schema migrations and inserting pre-configured data...")
+        statements = sql_content.split(';')
         
         # Disable foreign key checks to avoid DROP TABLE constraint failures
         cursor.execute("SET FOREIGN_KEY_CHECKS = 0")

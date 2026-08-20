@@ -133,41 +133,32 @@ body {
 
 .primary-btn {
     width: 100%;
-
     margin-top: 5px;
-
-    padding: 11px 18px;
-
+    padding: 12px 18px;
     border: none;
-    border-radius: 6px;
-
-    background: #2e7d32;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
     color: #ffffff;
-
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     font-size: 15px;
-    font-weight: 500;
-
+    font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
+    transition: all 0.3s ease;
 }
 
 
 .primary-btn:hover {
-    background: #1b5e20;
-
-    transform: translateY(-1px);
-
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #1b5e20, #2e7d32);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
 }
 
 
 .primary-btn:active {
     transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(46, 125, 50, 0.2);
 }
 
 
